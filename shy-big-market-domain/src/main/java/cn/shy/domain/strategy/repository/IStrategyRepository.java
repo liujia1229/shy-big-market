@@ -1,6 +1,8 @@
 package cn.shy.domain.strategy.repository;
 
 import cn.shy.domain.strategy.model.entity.StrategyAwardEntity;
+import cn.shy.domain.strategy.model.entity.StrategyEntity;
+import cn.shy.domain.strategy.model.entity.StrategyRuleEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -18,14 +20,18 @@ public interface IStrategyRepository {
      */
     List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId);
     
-    void storeStrategyAwardSearchRateTable(Long strategyId, int rateRange, Map<Integer, Integer> shuffleStrategyAwardSearchRateTable);
+    void storeStrategyAwardSearchRateTable(String key, int rateRange, Map<Integer, Integer> shuffleStrategyAwardSearchRateTable);
     
     /**
      * 返回策略对应的结果范围
-     * @param strategyId
+     * @param key
      * @return
      */
-    int getRateRange(Long strategyId);
+    int getRateRange(String key);
     
-    Integer getStrategyAwardAssemble(Long strategyId, int random);
+    Integer getStrategyAwardAssemble(String key, int random);
+    
+    StrategyEntity queryStrategyEntityByStrategyId(Long strategyId);
+    
+    StrategyRuleEntity queryStrategyRuleEntities(Long strategyId, String ruleWeight);
 }
