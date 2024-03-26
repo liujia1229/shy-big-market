@@ -40,7 +40,7 @@ public class StrategyEntity {
         return null;
     }
     
-    private String[] roleModels() {
+    public String[] roleModels() {
         if (ruleModels == null || "".equals(ruleModels)){
             return null;
         }

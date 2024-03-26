@@ -41,6 +41,8 @@ public class StrategyRepository implements IStrategyRepository {
     @Resource
     private IStrategyRuleDao strategyRuleDao;
     
+    
+    
     @Override
     public List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId) {
         //先从缓存中差
@@ -102,7 +104,7 @@ public class StrategyRepository implements IStrategyRepository {
     }
     
     @Override
-    public StrategyRuleEntity queryStrategyRuleEntities(Long strategyId, String ruleModel) {
+    public StrategyRuleEntity queryStrategyRuleEntity(Long strategyId, String ruleModel) {
         StrategyRule strategyRuleReq = new StrategyRule();
         strategyRuleReq.setStrategyId(strategyId);
         strategyRuleReq.setRuleModel(ruleModel);
@@ -117,6 +119,16 @@ public class StrategyRepository implements IStrategyRepository {
                 .ruleValue(strategyRule.getRuleValue())
                 .ruleDesc(strategyRule.getRuleDesc())
                 .build();
+    }
+    
+    @Override
+    public String queryStrategyRuleValue(Long strategyId, Integer awardId, String ruleModel) {
+        StrategyRule strategyRule = new StrategyRule();
+        strategyRule.setRuleModel(ruleModel);
+        strategyRule.setAwardId(awardId);
+        strategyRule.setStrategyId(strategyId);
+        
+        return strategyRuleDao.queryStrategyRuleValue(strategyRule);
     }
     
     

@@ -40,7 +40,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         if (ruleWeight == null){
             return true;
         }
-        StrategyRuleEntity strategyRule = strategyRepository.queryStrategyRuleEntities(strategyId,ruleWeight);
+        StrategyRuleEntity strategyRule = strategyRepository.queryStrategyRuleEntity(strategyId,ruleWeight);
         if (strategyRule == null){
             throw new AppException(ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getCode(), ResponseCode.STRATEGY_RULE_WEIGHT_IS_NULL.getInfo());
         }
