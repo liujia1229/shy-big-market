@@ -23,4 +23,18 @@
         limit 10
     </select>
 
+
+    <select id="queryStrategyRuleValue" parameterType="cn.shy.infrastructure.persistent.po.StrategyAward" resultType="java.lang.String">
+        select rule_value
+        from strategy_rule
+        where strategy_id = #{strategyId} and rule_model = #{ruleModel}
+        <if test="awardId != null">
+            and award_id = #{awardId}
+        </if>
+    </select>
+
+    <select id="queryStrategyAwardRuleModels" parameterType="cn.shy.infrastructure.persistent.po.StrategyAward" resultType="java.lang.String">
+        select rule_models from strategy_award
+        where strategy_id = #{strategyId} and award_id = #{awardId}
+    </select>
 </mapper>
