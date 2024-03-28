@@ -4,9 +4,16 @@ import cn.shy.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.shy.domain.strategy.model.entity.RuleActionEntity;
 import cn.shy.domain.strategy.model.entity.RuleMatterEntity;
 import cn.shy.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
+import cn.shy.domain.strategy.model.valobj.RuleTreeVO;
+import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
+import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.domain.strategy.service.AbstractRaffleStrategy;
+import cn.shy.domain.strategy.service.rule.chain.ILogicChain;
+import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.shy.domain.strategy.service.rule.filter.ILogicFilter;
 import cn.shy.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
+import cn.shy.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
+import cn.shy.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -30,31 +37,33 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
     @Resource
     private DefaultLogicFactory logicFactory;
     
+    @Resource
+    private DefaultChainFactory defaultChainFactory;
+    
+    @Resource
+    private DefaultTreeFactory defaultTreeFactory;
+    
+    @Resource
+    private IStrategyRepository strategyRepository;
+    
     @Override
-    protected RuleActionEntity<RuleActionEntity.RaffleCenterEntity> doCheckRafflCenterLogic(RaffleFactorEntity raffleFactorEntity, String... logics) {
-        if (logics == null || 0 == logics.length){
-            return RuleActionEntity.<RuleActionEntity.RaffleCenterEntity>builder()
-                    .code(RuleLogicCheckTypeVO.ALLOW.getCode())
-                    .info(RuleLogicCheckTypeVO.ALLOW.getInfo())
+    public DefaultChainFactory.StrategyAwardVO raffleLogicChain(String userId, Long strategyId) {
+        ILogicChain logicChain = defaultChainFactory.openLogicChain(strategyId);
+        return logicChain.logic(userId, strategyId);
+    }
+    
+    @Override
+    public DefaultTreeFactory.StrategyAwardVO raffleLogicTree(String userId, Long strategyId, Integer awardId) {
+        StrategyAwardRuleModelVO strategyAwardRuleModelVO = strategyRepository.queryStrategyAwardRuleModelVO(strategyId, awardId);
+        if (strategyAwardRuleModelVO == null){
+            return DefaultTreeFactory.StrategyAwardVO.builder()
+                    .awardId(awardId)
                     .build();
         }
+        RuleTreeVO ruleTreeVO = strategyRepository.queryRuleTreeVOByTreeId(strategyAwardRuleModelVO.getRuleModels());
+        IDecisionTreeEngine decisionTreeEngine = defaultTreeFactory.openLogicTree(ruleTreeVO);
         
-        Map<String, ILogicFilter<RuleActionEntity.RaffleCenterEntity>> logicFilterGroup = logicFactory.openLogicFilter();
-        RuleActionEntity<RuleActionEntity.RaffleCenterEntity> ruleActionEntity = null;
-        for (String ruleModel : logics) {
-            ILogicFilter<RuleActionEntity.RaffleCenterEntity> filter = logicFilterGroup.get(ruleModel);
-            RuleMatterEntity ruleMatterEntity = new RuleMatterEntity();
-            ruleMatterEntity.setRuleModel(ruleModel);
-            ruleMatterEntity.setStrategyId(raffleFactorEntity.getStrategyId());
-            ruleMatterEntity.setUserId(raffleFactorEntity.getUserId());
-            ruleMatterEntity.setAwardId(raffleFactorEntity.getAwardId());
-            ruleActionEntity = filter.filter(ruleMatterEntity);
-            // 非放行结果则顺序过滤
-            log.info("抽奖中规则过滤 userId: {} ruleModel: {} code: {} info: {}", raffleFactorEntity.getUserId(), ruleModel, ruleActionEntity.getCode(), ruleActionEntity.getInfo());
-            if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntity.getCode())){
-                return ruleActionEntity;
-            }
-        }
-        return ruleActionEntity;
+        return decisionTreeEngine.process(userId, strategyId, awardId);
     }
+    
 }

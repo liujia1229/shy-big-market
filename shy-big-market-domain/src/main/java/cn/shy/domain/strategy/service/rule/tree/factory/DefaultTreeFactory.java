@@ -30,6 +30,17 @@ public class DefaultTreeFactory {
         return new DecisionTreeEngine(logicTreeNodeGroup,ruleTreeVO);
     }
     
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class StrategyAwardVO {
+        /** 抽奖奖品ID - 内部流转使用 */
+        private Integer awardId;
+        /** 抽奖奖品规则 */
+        private String awardRuleValue;
+    }
+    
     /**
      * 决策树个动作实习
      */
@@ -39,18 +50,7 @@ public class DefaultTreeFactory {
     @NoArgsConstructor
     public static class TreeActionEntity {
         private RuleLogicCheckTypeVO ruleLogicCheckType;
-        private StrategyAwardData strategyAwardData;
+        private StrategyAwardVO strategyAwardData;
     }
-    
-    
-    @Data
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class StrategyAwardData {
-        /** 抽奖奖品ID - 内部流转使用 */
-        private Integer awardId;
-        /** 抽奖奖品规则 */
-        private String awardRuleValue;
-    }
+
 }
