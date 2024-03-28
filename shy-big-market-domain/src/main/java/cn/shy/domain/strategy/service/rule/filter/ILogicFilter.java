@@ -1,4 +1,4 @@
-package cn.shy.domain.strategy.service.rule;
+package cn.shy.domain.strategy.service.rule.filter;
 
 import cn.shy.domain.strategy.model.entity.RuleActionEntity;
 import cn.shy.domain.strategy.model.entity.RuleMatterEntity;

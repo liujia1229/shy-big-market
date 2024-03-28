@@ -1,6 +1,6 @@
 package cn.shy.domain.strategy.model.valobj;
 
-import cn.shy.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import cn.shy.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import cn.shy.types.common.Constants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

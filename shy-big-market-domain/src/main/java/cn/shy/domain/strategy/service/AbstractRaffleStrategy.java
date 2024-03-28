@@ -1,4 +1,4 @@
-package cn.shy.domain.strategy.service.raffle;
+package cn.shy.domain.strategy.service;
 
 import cn.shy.domain.strategy.model.entity.*;
 import cn.shy.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
@@ -6,7 +6,9 @@ import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.domain.strategy.service.IRaffleStrategy;
 import cn.shy.domain.strategy.service.armory.IStrategyDispatch;
-import cn.shy.domain.strategy.service.rule.factory.DefaultLogicFactory;
+import cn.shy.domain.strategy.service.rule.chain.ILogicChain;
+import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
+import cn.shy.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import cn.shy.types.enums.ResponseCode;
 import cn.shy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +26,9 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
     @Resource
     private IStrategyRepository strategyRepository;
     
+    
     @Resource
-    private IStrategyDispatch strategyDispatch;
+    private DefaultChainFactory defaultChainFactory;
     
     @Override
     public RaffleAwardEntity performRaffle(RaffleFactorEntity raffleFactorEntity) {
@@ -35,34 +38,13 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
         if (null == strategyId || StringUtils.isBlank(userId)) {
             throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
         }
-        // 2. 策略查询
-        StrategyEntity strategyEntity = strategyRepository.queryStrategyEntityByStrategyId(strategyId);
+        // 2. 获取抽奖责任链 - 前置规则的责任链处理
+        ILogicChain logicChain = defaultChainFactory.openLogicChain(strategyId);
         
-        // 3.抽奖前过滤
-        RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> ruleActionEntity
-                = this.doCheckRaffleBeforeLogic(RaffleFactorEntity.builder()
-                .strategyId(strategyId).userId(userId).build(), strategyEntity.roleModels());
+        // 3. 通过责任链获得，奖品ID
+        Integer awardId = logicChain.logic(userId, strategyId);
         
-        if (RuleLogicCheckTypeVO.TAKE_OVER.getCode().equals(ruleActionEntity.getCode())) {
-            if (DefaultLogicFactory.LogicModel.RULE_BLACKLIST.getCode().equals(ruleActionEntity.getRuleModel())) {
-                return RaffleAwardEntity.builder()
-                        .awardId(ruleActionEntity.getData().getAwardId())
-                        .build();
-            } else if (DefaultLogicFactory.LogicModel.RULE_WIGHT.getCode().equals(ruleActionEntity.getRuleModel())) {
-                //权重返回抽奖信息
-                RuleActionEntity.RaffleBeforeEntity raffleBeforeEntity = ruleActionEntity.getData();
-                String ruleWeightValueKey = raffleBeforeEntity.getRuleWeightValueKey();
-                Integer awardId = strategyDispatch.getRandomAwardId(strategyId, ruleWeightValueKey);
-                return RaffleAwardEntity.builder()
-                        .awardId(awardId)
-                        .build();
-            }
-        }
-        
-        // 4.抽奖
-        Integer awardId = strategyDispatch.getRandomAwardId(strategyId);
-        
-        // 5. 查询奖品规则「抽奖中（拿到奖品ID时，过滤规则）、抽奖后（扣减完奖品库存后过滤，抽奖中拦截和无库存则走兜底）」
+        // 4. 查询奖品规则「抽奖中（拿到奖品ID时，过滤规则）、抽奖后（扣减完奖品库存后过滤，抽奖中拦截和无库存则走兜底）」
         StrategyAwardRuleModelVO strategyAwardRuleModelVO = strategyRepository.queryStrategyAwardRuleModelVO(strategyId, awardId);
         
         // 6. 抽奖中 - 规则过滤
@@ -83,8 +65,6 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
                 .awardId(awardId)
                 .build();
     }
-    
-    protected abstract RuleActionEntity<RuleActionEntity.RaffleBeforeEntity> doCheckRaffleBeforeLogic(RaffleFactorEntity build, String... logics);
     
     protected abstract RuleActionEntity<RuleActionEntity.RaffleCenterEntity> doCheckRafflCenterLogic(RaffleFactorEntity build, String... logics);
 }
