@@ -89,4 +89,7 @@ public class RaffleStrategyTest {
         log.info("测试结果：{}", JSON.toJSONString(raffleAwardEntity));
     }
     
+    
+    
+    
 }
