@@ -2,6 +2,7 @@ package cn.shy.domain.strategy.service.rule.chain.impl;
 
 import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.domain.strategy.service.rule.chain.AbstractLogicChain;
+import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.shy.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,14 +19,14 @@ import javax.annotation.Resource;
 public class BackListLogicChain extends AbstractLogicChain {
     @Override
     protected String ruleModel() {
-        return "rule_blacklist";
+        return DefaultChainFactory.LogicModel.RULE_BLACKLIST.getCode();
     }
     
     @Resource
     private IStrategyRepository strategyRepository;
     
     @Override
-    public Integer logic(String userId, Long strategyId) {
+    public DefaultChainFactory.StrategyAwardVO logic(String userId, Long strategyId) {
         //查数据库规则配置
         String ruleValue = strategyRepository.
                 queryStrategyRuleValue(strategyId, this.ruleModel());
@@ -38,7 +39,10 @@ public class BackListLogicChain extends AbstractLogicChain {
         for (String userBlackId : userBlackIds) {
             if (userBlackId.equals(userId)){
                 log.info("抽奖责任链-黑名单接管 userId: {} strategyId: {} ruleModel: {} awardId: {}", userId, strategyId, ruleModel(), awardId);
-                return awardId;
+                return DefaultChainFactory.StrategyAwardVO.builder()
+                        .awardId(awardId)
+                        .logicModel(this.ruleModel())
+                        .build();
             }
         }
         
