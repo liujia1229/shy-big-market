@@ -1,14 +1,8 @@
 package cn.shy.domain.strategy.service;
 
 import cn.shy.domain.strategy.model.entity.*;
-import cn.shy.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
-import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.shy.domain.strategy.repository.IStrategyRepository;
-import cn.shy.domain.strategy.service.IRaffleStrategy;
-import cn.shy.domain.strategy.service.armory.IStrategyDispatch;
-import cn.shy.domain.strategy.service.rule.chain.ILogicChain;
 import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
-import cn.shy.domain.strategy.service.rule.filter.factory.DefaultLogicFactory;
 import cn.shy.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import cn.shy.types.enums.ResponseCode;
 import cn.shy.types.exception.AppException;
@@ -22,16 +16,8 @@ import javax.annotation.Resource;
  * @since 2024/3/25 21:43
  */
 @Slf4j
-public abstract class AbstractRaffleStrategy implements IRaffleStrategy {
+public abstract class AbstractRaffleStrategy implements IRaffleStrategy,IRaffleStock {
     
-    @Resource
-    private IStrategyRepository strategyRepository;
-    
-    @Resource
-    private DefaultChainFactory defaultChainFactory;
-    
-    @Resource
-    private DefaultTreeFactory defaultTreeFactory;
     
     @Override
     public RaffleAwardEntity performRaffle(RaffleFactorEntity raffleFactorEntity) {

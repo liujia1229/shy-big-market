@@ -7,8 +7,12 @@ import cn.shy.domain.strategy.model.valobj.*;
 import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.infrastructure.persistent.dao.*;
 import cn.shy.infrastructure.persistent.po.*;
+import cn.shy.infrastructure.persistent.redis.IRedisService;
 import cn.shy.infrastructure.persistent.redis.RedissonService;
 import cn.shy.types.common.Constants;
+import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RBlockingQueue;
+import org.redisson.api.RDelayedQueue;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -16,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static cn.shy.types.common.Constants.RedisKey.*;
 
@@ -24,11 +29,9 @@ import static cn.shy.types.common.Constants.RedisKey.*;
  * @since 2024/3/23 22:21
  */
 @Repository
+@Slf4j
 public class StrategyRepository implements IStrategyRepository {
     
-    
-    @Resource
-    private RedissonService redissonService;
     
     @Resource
     private IAwardDao awardDao;
@@ -43,7 +46,7 @@ public class StrategyRepository implements IStrategyRepository {
     private IStrategyAwardDao strategyAwardDao;
     
     @Resource
-    private RedissonService redisService;
+    private IRedisService redisService;
     
     @Resource
     private IRuleTreeDao ruleTreeDao;
@@ -58,7 +61,7 @@ public class StrategyRepository implements IStrategyRepository {
     public List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId) {
         //先从缓存中差
         String cacheKey = STRATEGY_AWARD_KEY + strategyId;
-        List<StrategyAwardEntity> strategyAwardEntities = redissonService.getValue(cacheKey);
+        List<StrategyAwardEntity> strategyAwardEntities = redisService.getValue(cacheKey);
         if (strategyAwardEntities != null && !strategyAwardEntities.isEmpty()) {
             return strategyAwardEntities;
         }
@@ -75,34 +78,34 @@ public class StrategyRepository implements IStrategyRepository {
                     .build();
             strategyAwardEntities.add(strategyAwardEntity);
         }
-        redissonService.setValue(cacheKey, strategyAwardEntities);
+        redisService.setValue(cacheKey, strategyAwardEntities);
         return strategyAwardEntities;
     }
     
     @Override
     public void storeStrategyAwardSearchRateTable(String key, int rateRange, Map<Integer, Integer> shuffleStrategyAwardSearchRateTable) {
         //存储概率范围
-        redissonService.setValue(STRATEGY_RATE_RANGE_KEY + key, rateRange);
+        redisService.setValue(STRATEGY_RATE_RANGE_KEY + key, rateRange);
         //存储概率查找表
-        Map<Integer, Integer> cacheRateTable = redissonService.getMap(STRATEGY_RATE_TABLE_KEY + key);
+        Map<Integer, Integer> cacheRateTable = redisService.getMap(STRATEGY_RATE_TABLE_KEY + key);
         cacheRateTable.putAll(shuffleStrategyAwardSearchRateTable);
     }
     
     @Override
     public int getRateRange(String strategyId) {
-        return redissonService.getValue(STRATEGY_RATE_RANGE_KEY + strategyId);
+        return redisService.getValue(STRATEGY_RATE_RANGE_KEY + strategyId);
     }
     
     @Override
     public Integer getStrategyAwardAssemble(String key, int randomKey) {
-        return redissonService.getFromMap(STRATEGY_RATE_TABLE_KEY + key, randomKey);
+        return redisService.getFromMap(STRATEGY_RATE_TABLE_KEY + key, randomKey);
     }
     
     @Override
     public StrategyEntity queryStrategyEntityByStrategyId(Long strategyId) {
         //先取缓存
         String cacheKey = Constants.RedisKey.STRATEGY_KEY + strategyId;
-        StrategyEntity strategyEntity = redissonService.getValue(cacheKey);
+        StrategyEntity strategyEntity = redisService.getValue(cacheKey);
         if (strategyEntity == null) {
             Strategy strategy = strategyDao.queryStrategyEntityByStrategyId(strategyId);
             strategyEntity = StrategyEntity.builder()
@@ -212,5 +215,52 @@ public class StrategyRepository implements IStrategyRepository {
         return ruleTreeVODB;
     }
     
+    @Override
+    public void cacheStrategyAwardCount(String cacheKey, Integer awardCount) {
+        if (redisService.isExists(cacheKey)) {
+            return;
+        }
+        redisService.setAtomicLong(cacheKey, awardCount);
+    }
     
+    @Override
+    public Boolean subtractionAwardStock(String cacheKey) {
+        long surplus = redisService.decr(cacheKey);
+        if (surplus < 0) {
+            redisService.setValue(cacheKey, 0);
+            return false;
+        }
+        // 1. 按照cacheKey decr 后的值，如 99、98、97 和 key 组成为库存锁的key进行使用。
+        // 2. 加锁为了兜底，如果后续有恢复库存，手动处理等，也不会超卖。因为所有的可用库存key，都被加锁了。
+        String lockKey = cacheKey + Constants.UNDERLINE + surplus;
+        Boolean lock = redisService.setNx(lockKey);
+        if (lock){
+            return true;
+        }
+        log.info("策略奖品库存加锁失败 {}", lockKey);
+        return false;
+    }
+    
+    @Override
+    public StrategyAwardStockKeyVO takeQueueValue() {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_QUERY_KEY;
+        RBlockingQueue<StrategyAwardStockKeyVO> blockingQueue = redisService.getBlockingQueue(cacheKey);
+        return blockingQueue.poll();
+    }
+    
+    @Override
+    public void awardStockConsumeSendQueue(StrategyAwardStockKeyVO strategyAwardStockKeyVO) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_COUNT_QUERY_KEY;
+        RBlockingQueue<StrategyAwardStockKeyVO> blockingQueue = redisService.getBlockingQueue(cacheKey);
+        RDelayedQueue<StrategyAwardStockKeyVO> delayedQueue = redisService.getDelayedQueue(blockingQueue);
+        delayedQueue.offer(strategyAwardStockKeyVO, 3, TimeUnit.SECONDS);
+    }
+    
+    @Override
+    public void updateStrategyAwardStock(Long strategyId, Integer awardId) {
+        StrategyAward strategyAward = new StrategyAward();
+        strategyAward.setStrategyId(strategyId);
+        strategyAward.setAwardId(awardId);
+        strategyAwardDao.updateStrategyAwardStock(strategyAward);
+    }
 }
