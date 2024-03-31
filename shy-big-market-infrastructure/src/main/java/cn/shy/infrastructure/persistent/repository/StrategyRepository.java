@@ -32,10 +32,6 @@ import static cn.shy.types.common.Constants.RedisKey.*;
 @Slf4j
 public class StrategyRepository implements IStrategyRepository {
     
-    
-    @Resource
-    private IAwardDao awardDao;
-    
     @Resource
     private IStrategyDao strategyDao;
     
@@ -66,15 +62,18 @@ public class StrategyRepository implements IStrategyRepository {
             return strategyAwardEntities;
         }
         //查数据库
-        List<StrategyAward> strategyAwards = awardDao.queryAwardListByStrategyId(strategyId);
+        List<StrategyAward> strategyAwards = strategyAwardDao.queryAwardListByStrategyId(strategyId);
         strategyAwardEntities = new ArrayList<>(strategyAwards.size());
         for (StrategyAward strategyAward : strategyAwards) {
             StrategyAwardEntity strategyAwardEntity = StrategyAwardEntity.builder()
                     .strategyId(strategyAward.getStrategyId())
                     .awardId(strategyAward.getAwardId())
+                    .awardTitle(strategyAward.getAwardTitle())
+                    .awardSubtitle(strategyAward.getAwardSubtitle())
                     .awardCount(strategyAward.getAwardCount())
                     .awardCountSurplus(strategyAward.getAwardCountSurplus())
                     .awardRate(strategyAward.getAwardRate())
+                    .sort(strategyAward.getSort())
                     .build();
             strategyAwardEntities.add(strategyAwardEntity);
         }
@@ -234,7 +233,7 @@ public class StrategyRepository implements IStrategyRepository {
         // 2. 加锁为了兜底，如果后续有恢复库存，手动处理等，也不会超卖。因为所有的可用库存key，都被加锁了。
         String lockKey = cacheKey + Constants.UNDERLINE + surplus;
         Boolean lock = redisService.setNx(lockKey);
-        if (lock){
+        if (lock) {
             return true;
         }
         log.info("策略奖品库存加锁失败 {}", lockKey);
@@ -254,6 +253,34 @@ public class StrategyRepository implements IStrategyRepository {
         RBlockingQueue<StrategyAwardStockKeyVO> blockingQueue = redisService.getBlockingQueue(cacheKey);
         RDelayedQueue<StrategyAwardStockKeyVO> delayedQueue = redisService.getDelayedQueue(blockingQueue);
         delayedQueue.offer(strategyAwardStockKeyVO, 3, TimeUnit.SECONDS);
+    }
+    
+    @Override
+    public StrategyAwardEntity queryStrategyAwardEntity(Long strategyId, Integer awardId) {
+        String cacheKey = Constants.RedisKey.STRATEGY_AWARD_KEY + strategyId + Constants.UNDERLINE + awardId;
+        StrategyAwardEntity strategyAwardEntity = redisService.getValue(cacheKey);
+        if (strategyAwardEntity != null) {
+            return strategyAwardEntity;
+        }
+        StrategyAward strategyAwardReq = new StrategyAward();
+        strategyAwardReq.setAwardId(awardId);
+        strategyAwardReq.setStrategyId(strategyId);
+        
+        StrategyAward strategyAwardRes = strategyAwardDao.queryStrategyAward(strategyAwardReq);
+        
+        strategyAwardEntity = StrategyAwardEntity.builder()
+                .strategyId(strategyAwardRes.getStrategyId())
+                .awardId(strategyAwardRes.getAwardId())
+                .awardTitle(strategyAwardRes.getAwardTitle())
+                .awardSubtitle(strategyAwardRes.getAwardSubtitle())
+                .awardCount(strategyAwardRes.getAwardCount())
+                .awardCountSurplus(strategyAwardRes.getAwardCountSurplus())
+                .awardRate(strategyAwardRes.getAwardRate())
+                .sort(strategyAwardRes.getSort())
+                .build();
+        //存缓存
+        redisService.setValue(cacheKey, strategyAwardEntity);
+        return strategyAwardEntity;
     }
     
     @Override

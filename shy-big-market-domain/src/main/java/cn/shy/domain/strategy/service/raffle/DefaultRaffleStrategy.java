@@ -1,14 +1,12 @@
 package cn.shy.domain.strategy.service.raffle;
 
-import cn.shy.domain.strategy.model.entity.RaffleFactorEntity;
-import cn.shy.domain.strategy.model.entity.RuleActionEntity;
-import cn.shy.domain.strategy.model.entity.RuleMatterEntity;
-import cn.shy.domain.strategy.model.valobj.RuleLogicCheckTypeVO;
+import cn.shy.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.shy.domain.strategy.model.valobj.RuleTreeVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
-import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.domain.strategy.service.AbstractRaffleStrategy;
+import cn.shy.domain.strategy.service.IRaffleAward;
+import cn.shy.domain.strategy.service.IRaffleStock;
 import cn.shy.domain.strategy.service.rule.chain.ILogicChain;
 import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.shy.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
@@ -16,7 +14,7 @@ import cn.shy.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngi
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 默认的抽奖策略实现
@@ -26,16 +24,8 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
+public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRaffleStock, IRaffleAward {
     
-    @Resource
-    private DefaultChainFactory defaultChainFactory;
-    
-    @Resource
-    private DefaultTreeFactory defaultTreeFactory;
-    
-    @Resource
-    private IStrategyRepository strategyRepository;
     
     @Override
     public DefaultChainFactory.StrategyAwardVO raffleLogicChain(String userId, Long strategyId) {
@@ -65,5 +55,10 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy {
     @Override
     public StrategyAwardStockKeyVO takeQueueValue() {
         return strategyRepository.takeQueueValue();
+    }
+    
+    @Override
+    public List<StrategyAwardEntity> queryRaffleStrategyAwardList(Long strategyId) {
+        return strategyRepository.queryStrategyAwardList(strategyId);
     }
 }

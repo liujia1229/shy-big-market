@@ -13,6 +13,7 @@
         <module>shy-big-market-trigger</module>
         <module>shy-big-market-infrastructure</module>
         <module>shy-big-market-types</module>
+        <module>shy-big-market-api</module>
     </modules>
 
     <repositories>

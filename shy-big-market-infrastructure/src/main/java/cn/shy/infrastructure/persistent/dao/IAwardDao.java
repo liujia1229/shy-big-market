@@ -1,6 +1,5 @@
 package cn.shy.infrastructure.persistent.dao;
 
-import cn.shy.infrastructure.persistent.po.Award;
 import cn.shy.infrastructure.persistent.po.StrategyAward;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,9 +13,5 @@ import java.util.List;
 public interface IAwardDao {
 
     List<StrategyAward> queryAwardList();
-    
-    List<StrategyAward> queryAwardListByStrategyId(Long strategyId);
-    
-    String queryStrategyAwardRuleModels(StrategyAward strategyAward);
     
 }

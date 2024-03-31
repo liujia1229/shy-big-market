@@ -1,6 +1,5 @@
 package cn.shy.infrastructure.persistent.dao;
 
-import cn.shy.domain.strategy.model.entity.StrategyEntity;
 import cn.shy.infrastructure.persistent.po.Strategy;
 import org.apache.ibatis.annotations.Mapper;
 

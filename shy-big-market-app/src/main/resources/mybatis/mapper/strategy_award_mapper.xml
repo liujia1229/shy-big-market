@@ -38,10 +38,23 @@
         where strategy_id = #{strategyId} and award_id = #{awardId}
     </select>
 
+    <select id="queryStrategyAward" parameterType="cn.shy.infrastructure.persistent.po.StrategyAward" resultMap="dataMap">
+        select strategy_id, award_id, award_title, award_subtitle, award_count, award_count_surplus, award_rate, rule_models, sort
+        from strategy_award
+        where strategy_id = #{strategyId} and award_id = #{awardId}
+    </select>
 
     <update id="updateStrategyAwardStock" parameterType="cn.shy.infrastructure.persistent.po.StrategyAward">
         update strategy_award
         set award_count_surplus = award_count_surplus - 1
         where strategy_id = #{strategyId} and award_id = #{awardId} and award_count_surplus > 0
     </update>
+
+    <select id="queryAwardListByStrategyId" parameterType="java.lang.Long" resultMap="dataMap">
+        select strategy_id, award_id, award_title, award_subtitle, award_count, award_count_surplus, award_rate, sort
+        from strategy_award
+        where strategy_id = #{strategy_id}
+    </select>
+
+
 </mapper>
