@@ -54,6 +54,7 @@
         select strategy_id, award_id, award_title, award_subtitle, award_count, award_count_surplus, award_rate, sort
         from strategy_award
         where strategy_id = #{strategy_id}
+        order by sort
     </select>
 
 
