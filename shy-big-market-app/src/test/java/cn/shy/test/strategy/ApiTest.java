@@ -1,4 +1,4 @@
-package cn.shy.test;
+package cn.shy.test.strategy;
 
 import cn.shy.infrastructure.persistent.dao.IAwardDao;
 import cn.shy.infrastructure.persistent.redis.IRedisService;

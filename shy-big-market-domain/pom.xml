@@ -10,6 +10,12 @@
     <artifactId>shy-big-market-domain</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>cn.bugstack.middleware</groupId>
+            <artifactId>db-router-spring-boot-starter</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

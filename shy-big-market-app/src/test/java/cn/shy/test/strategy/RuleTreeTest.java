@@ -1,4 +1,4 @@
-package cn.shy.test;
+package cn.shy.test.strategy;
 
 import cn.shy.domain.strategy.model.valobj.*;
 import cn.shy.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
