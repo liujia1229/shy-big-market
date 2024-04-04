@@ -16,7 +16,7 @@ import java.util.Date;
  * @since 2024/4/1 20:42
  */
 @Service
-public class RaffleActivityService extends AbstractRaffleActivity{
+public class RaffleActivityService extends AbstractRaffleActivity implements ISkuStock{
     
     public RaffleActivityService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
@@ -58,4 +58,13 @@ public class RaffleActivityService extends AbstractRaffleActivity{
     }
     
     
+    @Override
+    public void clearActivitySkuStock(Long sku) {
+        activityRepository.clearActivitySkuStock(sku);
+    }
+    
+    @Override
+    public void clearQueueValue() {
+        activityRepository.clearQueueValue();
+    }
 }

@@ -4,6 +4,9 @@ import cn.shy.domain.activity.model.aggregate.CreateOrderAggregate;
 import cn.shy.domain.activity.model.entity.ActivityCountEntity;
 import cn.shy.domain.activity.model.entity.ActivityEntity;
 import cn.shy.domain.activity.model.entity.ActivitySkuEntity;
+import cn.shy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
+
+import java.util.Date;
 
 /**
  * 活动仓储接口
@@ -37,4 +40,36 @@ public interface IActivityRepository {
      * @param createOrderAggregate
      */
     void doSaveOrder(CreateOrderAggregate createOrderAggregate);
+    
+    /**
+     * 缓存sku库存
+     * @param cacheKey
+     * @param stockCountSurplus
+     */
+    void cacheActivitySkuStockCount(String cacheKey, Integer stockCountSurplus);
+    
+    /**
+     * 扣减redis中的sku库存
+     *
+     * @param sku
+     * @param cacheKey
+     * @param endDateTime
+     * @return
+     */
+    boolean subtractionActivitySkuStock(Long sku, String cacheKey, Date endDateTime);
+    
+    /**
+     * 发送消息到延迟队列
+     * @param activitySkuStockKeyVO
+     */
+    void activitySkuStockConsumeSendQueue(ActivitySkuStockKeyVO activitySkuStockKeyVO);
+    
+    /**
+     * 清除活动库存
+     * @param sku
+     */
+    void clearActivitySkuStock(Long sku);
+    
+    void clearQueueValue();
+    
 }
