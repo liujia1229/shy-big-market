@@ -1,4 +1,4 @@
-package cn.shy.domain.activity.service.rule.armory;
+package cn.shy.domain.activity.service.armory;
 
 import cn.shy.domain.activity.model.entity.ActivitySkuEntity;
 import cn.shy.domain.activity.repository.IActivityRepository;

@@ -1,5 +1,7 @@
 package cn.shy.infrastructure.persistent.dao;
 
+import cn.bugstack.middleware.db.router.annotation.DBRouter;
+import cn.shy.infrastructure.persistent.po.RaffleActivityAccountMonth;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,4 +11,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface IRaffleActivityAccountMonthDao {
+    @DBRouter
+    RaffleActivityAccountMonth queryActivityAccountMonthByUserId(RaffleActivityAccountMonth raffleActivityAccountMonthReq);
+    
+    void insertActivityAccountMonth(RaffleActivityAccountMonth raffleActivityAccountMonth);
+    
+    int updateActivityAccountMonthSubtractionQuota(RaffleActivityAccountMonth raffleActivityAccountMonth);
 }

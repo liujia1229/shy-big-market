@@ -1,5 +1,6 @@
-package cn.shy.infrastructure.persistent.po;
+package cn.shy.domain.activity.model.entity;
 
+import cn.shy.domain.activity.model.valobj.UserRaffleOrderStateVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,20 +9,16 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 用户抽奖订单表
+ * 用户抽奖订单实体对象
  *
  * @author shy
- * @since 2024/4/4 16:34
+ * @since 2024/4/6 14:51
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRaffleOrder {
-    /**
-     * 用户ID
-     */
-    private String id;
+public class UserRaffleOrderEntity {
     /**
      * 活动ID
      */
@@ -49,13 +46,5 @@ public class UserRaffleOrder {
     /**
      * 创建时间
      */
-    private String orderState;
-    /**
-     * 更新时间
-     */
-    private Date createTime;
-    /**
-     *
-     */
-    private Date updateTime;
+    private UserRaffleOrderStateVO orderState;
 }

@@ -1,4 +1,4 @@
-package cn.shy.domain.activity.service.rule;
+package cn.shy.domain.activity.service.quota.rule;
 
 /**
  * @author shy

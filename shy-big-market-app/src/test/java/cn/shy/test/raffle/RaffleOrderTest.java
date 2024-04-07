@@ -1,8 +1,8 @@
 package cn.shy.test.raffle;
 
 import cn.shy.domain.activity.model.entity.SkuRechargeEntity;
-import cn.shy.domain.activity.service.IRaffleOrder;
-import cn.shy.domain.activity.service.rule.armory.IActivityArmory;
+import cn.shy.domain.activity.service.IRaffleActivityAccountQuotaService;
+import cn.shy.domain.activity.service.armory.IActivityArmory;
 import cn.shy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
@@ -25,7 +25,7 @@ import java.util.concurrent.CountDownLatch;
 public class RaffleOrderTest {
     
     @Resource
-    private IRaffleOrder raffleOrder;
+    private IRaffleActivityAccountQuotaService raffleOrder;
     
     @Resource
     private IActivityArmory activityArmory;

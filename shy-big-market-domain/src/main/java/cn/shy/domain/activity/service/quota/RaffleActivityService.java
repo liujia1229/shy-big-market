@@ -1,10 +1,11 @@
-package cn.shy.domain.activity.service;
+package cn.shy.domain.activity.service.quota;
 
 import cn.shy.domain.activity.model.aggregate.CreateOrderAggregate;
 import cn.shy.domain.activity.model.entity.*;
 import cn.shy.domain.activity.model.valobj.OrderStateVO;
 import cn.shy.domain.activity.repository.IActivityRepository;
-import cn.shy.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import cn.shy.domain.activity.service.IRaffleActivitySkuStockService;
+import cn.shy.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Date;
  * @since 2024/4/1 20:42
  */
 @Service
-public class RaffleActivityService extends AbstractRaffleActivity implements ISkuStock{
+public class RaffleActivityService extends AbstractRaffleActivity implements IRaffleActivitySkuStockService {
     
     public RaffleActivityService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);

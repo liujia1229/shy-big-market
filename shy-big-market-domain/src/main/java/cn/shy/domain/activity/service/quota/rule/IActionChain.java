@@ -1,4 +1,4 @@
-package cn.shy.domain.activity.service.rule;
+package cn.shy.domain.activity.service.quota.rule;
 
 import cn.shy.domain.activity.model.entity.ActivityCountEntity;
 import cn.shy.domain.activity.model.entity.ActivityEntity;

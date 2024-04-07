@@ -1,7 +1,6 @@
 package cn.shy.trigger.listener;
 
-import cn.shy.domain.activity.event.ActivitySkuStockZeroMessageEvent;
-import cn.shy.domain.activity.service.ISkuStock;
+import cn.shy.domain.activity.service.IRaffleActivitySkuStockService;
 import cn.shy.types.event.BaseEvent;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.nio.LongBuffer;
 
 /**
  * 活动sku库存耗尽
@@ -27,7 +25,7 @@ public class ActivitySkuStockZeroCustomer {
     private String topic;
     
     @Resource
-    private ISkuStock skuStock;
+    private IRaffleActivitySkuStockService skuStock;
     
     
     @RabbitListener(queuesToDeclare = @Queue("activity_sku_stock_zero"))

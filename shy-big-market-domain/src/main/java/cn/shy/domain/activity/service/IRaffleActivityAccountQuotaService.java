@@ -8,7 +8,7 @@ import cn.shy.domain.activity.model.entity.SkuRechargeEntity;
  * @author shy
  * @since 2024/4/1 15:22
  */
-public interface IRaffleOrder {
+public interface IRaffleActivityAccountQuotaService {
     /**
      * 创建 sku 账户充值订单，给用户增加抽奖次数
      * <p>

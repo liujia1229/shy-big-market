@@ -1,9 +1,8 @@
 package cn.shy.domain.activity.repository;
 
 import cn.shy.domain.activity.model.aggregate.CreateOrderAggregate;
-import cn.shy.domain.activity.model.entity.ActivityCountEntity;
-import cn.shy.domain.activity.model.entity.ActivityEntity;
-import cn.shy.domain.activity.model.entity.ActivitySkuEntity;
+import cn.shy.domain.activity.model.aggregate.CreatePartakeOrderAggregate;
+import cn.shy.domain.activity.model.entity.*;
 import cn.shy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 
 import java.util.Date;
@@ -72,4 +71,42 @@ public interface IActivityRepository {
     
     void clearQueueValue();
     
+    /**
+     * 用户参与订单
+     * @param partakeRaffleActivityEntity
+     * @return
+     */
+    UserRaffleOrderEntity queryNoUsedRaffleOrder(PartakeRaffleActivityEntity partakeRaffleActivityEntity);
+    
+    /**
+     * 用户活动总额度查询
+     * @param userId
+     * @param activityId
+     * @return
+     */
+    ActivityAccountEntity queryActivityAccountByUserId(String userId, Long activityId);
+    
+    /**
+     * 月额度表查询
+     * @param userId
+     * @param activityId
+     * @param month
+     * @return
+     */
+    ActivityAccountMonthEntity queryActivityAccountMonthByUserId(String userId, Long activityId, String month);
+    
+    /**
+     * 日额度表查询
+     * @param userId
+     * @param activityId
+     * @param day
+     * @return
+     */
+    ActivityAccountDayEntity queryActivityAccountDayByUserId(String userId, Long activityId, String day);
+    
+    /**
+     * 保存领取活动聚合对象
+     * @param createPartakeOrderAggregate
+     */
+    void saveCreatePartakeOrderAggregate(CreatePartakeOrderAggregate createPartakeOrderAggregate);
 }

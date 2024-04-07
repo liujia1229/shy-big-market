@@ -1,4 +1,4 @@
-package cn.shy.domain.activity.service.rule.armory;
+package cn.shy.domain.activity.service.armory;
 
 import java.util.Date;
 

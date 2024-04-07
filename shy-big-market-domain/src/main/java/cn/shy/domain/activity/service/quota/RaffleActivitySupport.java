@@ -1,10 +1,10 @@
-package cn.shy.domain.activity.service;
+package cn.shy.domain.activity.service.quota;
 
 import cn.shy.domain.activity.model.entity.ActivityCountEntity;
 import cn.shy.domain.activity.model.entity.ActivityEntity;
 import cn.shy.domain.activity.model.entity.ActivitySkuEntity;
 import cn.shy.domain.activity.repository.IActivityRepository;
-import cn.shy.domain.activity.service.rule.factory.DefaultActivityChainFactory;
+import cn.shy.domain.activity.service.quota.rule.factory.DefaultActivityChainFactory;
 
 /**
  * @author shy

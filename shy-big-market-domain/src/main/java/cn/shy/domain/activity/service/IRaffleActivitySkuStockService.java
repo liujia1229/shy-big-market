@@ -5,7 +5,7 @@ package cn.shy.domain.activity.service;
  * @author shy
  * @since 2024/4/3 21:26
  */
-public interface ISkuStock {
+public interface IRaffleActivitySkuStockService {
     /**
      * 更新数据库库存
      * @param sku

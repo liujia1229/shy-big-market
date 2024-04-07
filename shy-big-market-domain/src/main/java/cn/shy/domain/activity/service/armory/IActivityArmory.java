@@ -1,4 +1,4 @@
-package cn.shy.domain.activity.service.rule.armory;
+package cn.shy.domain.activity.service.armory;
 
 /**
  * 活动sku预热
