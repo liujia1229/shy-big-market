@@ -109,4 +109,17 @@ public interface IActivityRepository {
      * @param createPartakeOrderAggregate
      */
     void saveCreatePartakeOrderAggregate(CreatePartakeOrderAggregate createPartakeOrderAggregate);
+    
+    /**
+     * 取出队列中的sku
+     * @return
+     */
+    ActivitySkuStockKeyVO takeQueueValue();
+    
+    /**
+     * 更新sku库存
+     * @param sku
+     */
+    void updateActivitySkuStock(Long sku);
+    
 }

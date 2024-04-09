@@ -1,4 +1,4 @@
-package cn.shy.test.raffle;
+package cn.shy.test.domain.raffle;
 
 import cn.shy.domain.activity.model.entity.PartakeRaffleActivityEntity;
 import cn.shy.domain.activity.model.entity.UserRaffleOrderEntity;

@@ -1,5 +1,7 @@
 package cn.shy.domain.activity.service;
 
+import cn.shy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
+
 /**
  * 活动sku库存处理接口
  * @author shy
@@ -18,4 +20,15 @@ public interface IRaffleActivitySkuStockService {
     void clearQueueValue();
     
     
+    /**
+     * 从队列中取出
+     * @return
+     */
+    ActivitySkuStockKeyVO takeQueueValue();
+    
+    /**
+     * 更新数据库中sku库存
+     * @param sku
+     */
+    void updateActivitySkuStock(Long sku);
 }

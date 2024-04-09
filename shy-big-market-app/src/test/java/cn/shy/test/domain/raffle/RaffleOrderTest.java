@@ -1,4 +1,4 @@
-package cn.shy.test.raffle;
+package cn.shy.test.domain.raffle;
 
 import cn.shy.domain.activity.model.entity.SkuRechargeEntity;
 import cn.shy.domain.activity.service.IRaffleActivityAccountQuotaService;

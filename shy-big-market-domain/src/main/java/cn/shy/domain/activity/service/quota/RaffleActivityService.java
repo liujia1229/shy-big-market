@@ -2,6 +2,7 @@ package cn.shy.domain.activity.service.quota;
 
 import cn.shy.domain.activity.model.aggregate.CreateOrderAggregate;
 import cn.shy.domain.activity.model.entity.*;
+import cn.shy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 import cn.shy.domain.activity.model.valobj.OrderStateVO;
 import cn.shy.domain.activity.repository.IActivityRepository;
 import cn.shy.domain.activity.service.IRaffleActivitySkuStockService;
@@ -67,5 +68,16 @@ public class RaffleActivityService extends AbstractRaffleActivity implements IRa
     @Override
     public void clearQueueValue() {
         activityRepository.clearQueueValue();
+    }
+    
+    @Override
+    public ActivitySkuStockKeyVO takeQueueValue() {
+        return activityRepository.takeQueueValue();
+    }
+    
+    @Override
+    public void updateActivitySkuStock(Long sku) {
+        activityRepository.updateActivitySkuStock(sku);
+        
     }
 }

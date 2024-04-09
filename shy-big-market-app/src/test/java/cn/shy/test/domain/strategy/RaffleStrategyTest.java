@@ -1,4 +1,4 @@
-package cn.shy.test.strategy;
+package cn.shy.test.domain.strategy;
 
 import cn.shy.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.shy.domain.strategy.model.entity.RaffleFactorEntity;

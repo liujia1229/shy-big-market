@@ -1,4 +1,4 @@
-package cn.shy.test.raffle;
+package cn.shy.test.domain.raffle;
 
 import cn.shy.infrastructure.persistent.dao.IRaffleActivityOrderDao;
 import cn.shy.infrastructure.persistent.po.RaffleActivityOrder;
