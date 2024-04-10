@@ -90,6 +90,11 @@ public class RaffleStrategyTest {
         new CountDownLatch(1).await();
     }
 
+
+    @Test
+    public void test_raffleLogicTree(){
+    
+    }
     
     
 }
