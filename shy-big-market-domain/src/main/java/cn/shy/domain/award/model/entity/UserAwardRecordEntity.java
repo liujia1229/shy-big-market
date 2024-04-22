@@ -2,6 +2,7 @@ package cn.shy.domain.award.model.entity;
 
 import cn.shy.domain.award.model.valobj.AwardStateVO;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserAwardRecordEntity {
     
     /**

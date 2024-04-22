@@ -1,4 +1,4 @@
-package cn.shy.domain.strategy.model.entity;
+package cn.shy.trigger.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,30 +6,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 抽奖奖品实体
- *
+ * 活动抽奖请求对象
  * @author shy
- * @since 2024/3/25 21:00
+ * @since 2024/4/20 22:08
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleAwardEntity {
+public class ActivityDrawResponseDTO {
     /**
-     * 奖品ID
+     *奖品ID
      */
     private Integer awardId;
     /**
-     * 抽奖奖品标题
+     * 奖品标题
      */
     private String awardTitle;
     /**
-     * 奖品配置信息
+     * 排序编号【策略奖品配置的奖品顺序编号】
      */
-    private String awardConfig;
-    /**
-     * 奖品顺序号
-     */
-    private Integer sort;
+    private Integer awardIndex;
 }

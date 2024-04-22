@@ -8,7 +8,6 @@ import cn.shy.domain.strategy.repository.IStrategyRepository;
 import cn.shy.infrastructure.persistent.dao.*;
 import cn.shy.infrastructure.persistent.po.*;
 import cn.shy.infrastructure.persistent.redis.IRedisService;
-import cn.shy.infrastructure.persistent.redis.RedissonService;
 import cn.shy.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingQueue;
@@ -52,6 +51,12 @@ public class StrategyRepository implements IStrategyRepository {
     
     @Resource
     private IRuleTreeNodeLineDao ruleTreeNodeLineDao;
+    
+    @Resource
+    private IRaffleActivityDao raffleActivityDao;
+    
+    @Resource
+    private IRaffleActivityAccountDayDao raffleActivityAccountDayDao;
     
     @Override
     public List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId) {
@@ -289,5 +294,28 @@ public class StrategyRepository implements IStrategyRepository {
         strategyAward.setStrategyId(strategyId);
         strategyAward.setAwardId(awardId);
         strategyAwardDao.updateStrategyAwardStock(strategyAward);
+    }
+    
+    @Override
+    public Long queryStrategyIdByActivityId(Long activityId) {
+        return raffleActivityDao.queryStrategyIdByActivityId(activityId);
+    }
+    
+    @Override
+    public Integer queryTodayUserRaffleCount(String userId, Long strategyId) {
+        //活动id
+        Long activityId = raffleActivityDao.queryActivityIdByStrategyId(strategyId);
+        //封装参数
+        RaffleActivityAccountDay raffleActivityAccountDayReq = new RaffleActivityAccountDay();
+        raffleActivityAccountDayReq.setActivityId(activityId);
+        raffleActivityAccountDayReq.setDay(raffleActivityAccountDayReq.currentDay());
+        raffleActivityAccountDayReq.setUserId(userId);
+        
+        RaffleActivityAccountDay raffleActivityAccountDay = raffleActivityAccountDayDao.queryActivityAccountDayByUserId(raffleActivityAccountDayReq);
+        if (raffleActivityAccountDay == null){
+            return 0;
+        }
+        
+        return raffleActivityAccountDay.getDayCount() - raffleActivityAccountDay.getDayCountSurplus();
     }
 }

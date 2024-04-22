@@ -6,6 +6,7 @@ import cn.shy.domain.activity.model.entity.*;
 import cn.shy.domain.activity.model.valobj.ActivitySkuStockKeyVO;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 活动仓储接口
@@ -122,4 +123,10 @@ public interface IActivityRepository {
      */
     void updateActivitySkuStock(Long sku);
     
+    /**
+     *
+     * @param activityId
+     * @return
+     */
+    List<ActivitySkuEntity> queryActivitySkuListByActivityId(Long activityId);
 }

@@ -14,4 +14,10 @@ public interface IStrategyArmory {
      */
     boolean assembleLotteryStrategy(Long strategyId);
     
+    /**
+     * 根据活动id缓存策略
+     * @param activityId
+     * @return
+     */
+    boolean assembleLotteryStrategyByActivityId(Long activityId);
 }

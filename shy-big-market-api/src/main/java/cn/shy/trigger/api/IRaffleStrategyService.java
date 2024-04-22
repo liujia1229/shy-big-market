@@ -12,7 +12,7 @@ import java.util.List;
  * @author shy
  * @since 2024/3/30 16:26
  */
-public interface IRaffleService {
+public interface IRaffleStrategyService {
     
     /**
      * 策略装配接口

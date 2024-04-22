@@ -11,8 +11,10 @@ import cn.shy.domain.award.repository.IAwardRepository;
 import cn.shy.infrastructure.event.EventPublisher;
 import cn.shy.infrastructure.persistent.dao.ITaskDao;
 import cn.shy.infrastructure.persistent.dao.IUserAwardRecordDao;
+import cn.shy.infrastructure.persistent.dao.IUserRaffleOrderDao;
 import cn.shy.infrastructure.persistent.po.Task;
 import cn.shy.infrastructure.persistent.po.UserAwardRecord;
+import cn.shy.infrastructure.persistent.po.UserRaffleOrder;
 import cn.shy.types.enums.ResponseCode;
 import cn.shy.types.event.BaseEvent;
 import cn.shy.types.exception.AppException;
@@ -48,6 +50,9 @@ public class AwardRepository implements IAwardRepository {
     @Resource
     private IUserAwardRecordDao userAwardRecordDao;
     
+    @Resource
+    private IUserRaffleOrderDao userRaffleOrderDao;
+    
     @Override
     public void saveUserAwardRecord(UserAwardRecordAggregate userAwardRecordAggregate) {
         TaskEntity taskEntity = userAwardRecordAggregate.getTaskEntity();
@@ -75,6 +80,10 @@ public class AwardRepository implements IAwardRepository {
         task.setUserId(taskEntity.getUserId());
         task.setMessageId(taskEntity.getMessageId());
         
+        UserRaffleOrder userRaffleOrderReq = new UserRaffleOrder();
+        userRaffleOrderReq.setOrderId(userAwardRecordEntity.getOrderId());
+        userRaffleOrderReq.setUserId(userId);
+        
         try {
             dbRouter.doRouter(userId);
             transactionTemplate.execute(status -> {
@@ -83,6 +92,13 @@ public class AwardRepository implements IAwardRepository {
                    userAwardRecordDao.insert(userAwardRecord);
                    //写入任务
                    taskDao.insert(task);
+                   // 更新抽奖单
+                   int count = userRaffleOrderDao.updateUserRaffleOrderStateUsed(userRaffleOrderReq);
+                   if (1 != count) {
+                       status.setRollbackOnly();
+                       log.error("写入中奖记录，用户抽奖单已使用过，不可重复抽奖 userId: {} activityId: {} awardId: {}", userId, activityId, awardId);
+                       throw new AppException(ResponseCode.ACTIVITY_ORDER_ERROR.getCode(), ResponseCode.ACTIVITY_ORDER_ERROR.getInfo());
+                   }
                    return 1;
                } catch (DuplicateKeyException e){
                    status.setRollbackOnly();

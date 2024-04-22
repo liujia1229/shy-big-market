@@ -13,5 +13,6 @@ public interface IActivityArmory {
      * @return
      */
     boolean assembleActivitySku(Long sku);
-
+    
+    boolean assembleActivitySkuByActivityId(Long activityId);
 }

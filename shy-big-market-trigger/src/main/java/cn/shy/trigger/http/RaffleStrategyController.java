@@ -3,12 +3,10 @@ package cn.shy.trigger.http;
 import cn.shy.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.shy.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.shy.domain.strategy.model.entity.StrategyAwardEntity;
-import cn.shy.domain.strategy.service.AbstractRaffleStrategy;
 import cn.shy.domain.strategy.service.IRaffleAward;
-import cn.shy.domain.strategy.service.IRaffleStock;
 import cn.shy.domain.strategy.service.IRaffleStrategy;
 import cn.shy.domain.strategy.service.armory.IStrategyArmory;
-import cn.shy.trigger.api.IRaffleService;
+import cn.shy.trigger.api.IRaffleStrategyService;
 import cn.shy.trigger.api.dto.RaffleAwardListRequestDTO;
 import cn.shy.trigger.api.dto.RaffleAwardListResponseDTO;
 import cn.shy.trigger.api.dto.RaffleRequestDTO;
@@ -33,7 +31,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/api/${app.config.api-version}/raffle/")
 @CrossOrigin("${app.config.cross-origin}")
-public class RaffleController implements IRaffleService {
+public class RaffleStrategyController implements IRaffleStrategyService {
     
     @Resource
     private IStrategyArmory strategyArmory;
