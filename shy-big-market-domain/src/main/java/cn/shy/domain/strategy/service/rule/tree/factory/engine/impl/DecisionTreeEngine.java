@@ -9,11 +9,13 @@ import cn.shy.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import cn.shy.domain.strategy.service.rule.tree.factory.engine.IDecisionTreeEngine;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * 决策树引擎
+ *
  * @author shy
  * @since 2024/3/28 20:20
  */
@@ -30,7 +32,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
     }
     
     @Override
-    public DefaultTreeFactory.StrategyAwardVO process(String userId, Long strategyId, Integer awardId) {
+    public DefaultTreeFactory.StrategyAwardVO process(String userId, Long strategyId, Integer awardId, Date endDateTime) {
         DefaultTreeFactory.StrategyAwardVO strategyAwardData = null;
         
         //获取基础信息
@@ -38,15 +40,15 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
         Map<String, RuleTreeNodeVO> treeNodeMap = ruleTreeVO.getTreeNodeMap();
         
         RuleTreeNodeVO ruleTreeNode = treeNodeMap.get(nextNode);
-        while (nextNode != null){
+        while (nextNode != null) {
             ILogicTreeNode logicTreeNode = logicTreeNodeGroup.get(ruleTreeNode.getRuleKey());
-            DefaultTreeFactory.TreeActionEntity treeActionEntity = logicTreeNode.logic(userId, strategyId, awardId,ruleTreeNode.getRuleValue() );
+            DefaultTreeFactory.TreeActionEntity treeActionEntity = logicTreeNode.logic(userId, strategyId, awardId, ruleTreeNode.getRuleValue(), endDateTime);
             RuleLogicCheckTypeVO ruleLogicCheckTypeVO = treeActionEntity.getRuleLogicCheckType();
             strategyAwardData = treeActionEntity.getStrategyAwardVO();
             
             log.info("决策树引擎【{}】treeId:{} node:{} code:{}", ruleTreeVO.getTreeName(), ruleTreeVO.getTreeId(), nextNode, ruleLogicCheckTypeVO.getCode());
             
-            nextNode = nextNode(ruleLogicCheckTypeVO.getCode(),ruleTreeNode.getTreeNodeLineVOList());
+            nextNode = nextNode(ruleLogicCheckTypeVO.getCode(), ruleTreeNode.getTreeNodeLineVOList());
             ruleTreeNode = treeNodeMap.get(nextNode);
         }
         
@@ -54,11 +56,11 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
     }
     
     private String nextNode(String matterValue, List<RuleTreeNodeLineVO> treeNodeLineVOList) {
-        if (treeNodeLineVOList == null || treeNodeLineVOList.isEmpty()){
+        if (treeNodeLineVOList == null || treeNodeLineVOList.isEmpty()) {
             return null;
         }
         for (RuleTreeNodeLineVO ruleTreeNodeLineVO : treeNodeLineVOList) {
-            if(decisionLogic(matterValue,ruleTreeNodeLineVO)){
+            if (decisionLogic(matterValue, ruleTreeNodeLineVO)) {
                 return ruleTreeNodeLineVO.getRuleNodeTo();
             }
         }
@@ -66,7 +68,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
     }
     
     private boolean decisionLogic(String matterValue, RuleTreeNodeLineVO ruleTreeNodeLineVO) {
-        switch (ruleTreeNodeLineVO.getRuleLimitType()){
+        switch (ruleTreeNodeLineVO.getRuleLimitType()) {
             case EQUAL:
                 return matterValue.equals(ruleTreeNodeLineVO.getRuleLimitValue().getCode());
             // 以下规则暂时不需要实现

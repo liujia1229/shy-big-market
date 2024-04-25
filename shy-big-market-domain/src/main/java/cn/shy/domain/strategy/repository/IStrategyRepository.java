@@ -7,6 +7,7 @@ import cn.shy.domain.strategy.model.valobj.RuleTreeVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +53,7 @@ public interface IStrategyRepository {
      */
     void cacheStrategyAwardCount(String cacheKey, Integer awardCount);
     
-    Boolean subtractionAwardStock(String cacheKey);
+    Boolean subtractionAwardStock(String cacheKey, Date endDateTime);
     
     void awardStockConsumeSendQueue(StrategyAwardStockKeyVO build);
     
@@ -65,4 +66,6 @@ public interface IStrategyRepository {
     Long queryStrategyIdByActivityId(Long activityId);
     
     Integer queryTodayUserRaffleCount(String userId, Long strategyId);
+    
+    Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
 }

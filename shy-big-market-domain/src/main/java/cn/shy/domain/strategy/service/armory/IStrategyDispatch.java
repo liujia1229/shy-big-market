@@ -1,5 +1,7 @@
 package cn.shy.domain.strategy.service.armory;
 
+import java.util.Date;
+
 /**
  * @author shy
  * @since 2024/3/24 18:30
@@ -15,5 +17,5 @@ public interface IStrategyDispatch {
     
     Integer getRandomAwardId(Long strategyId, String ruleWeightValue);
     
-    Boolean subtractionAwardStock(Long strategyDispatch, Integer awardId);
+    Boolean subtractionAwardStock(Long strategyDispatch, Integer awardId, Date endDateTime);
 }

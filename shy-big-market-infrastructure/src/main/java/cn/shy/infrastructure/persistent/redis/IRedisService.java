@@ -2,6 +2,8 @@ package cn.shy.infrastructure.persistent.redis;
 
 import org.redisson.api.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Redis 服务
  * @author shy
@@ -249,4 +251,6 @@ public interface IRedisService {
     void setAtomicLong(String cacheKey, Integer awardCount);
     
     Boolean setNx(String lockKey);
+    
+    Boolean setNx(String key, long expired, TimeUnit timeUnit);
 }

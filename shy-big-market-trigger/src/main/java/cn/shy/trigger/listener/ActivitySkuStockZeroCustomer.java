@@ -28,7 +28,7 @@ public class ActivitySkuStockZeroCustomer {
     private IRaffleActivitySkuStockService skuStock;
     
     
-    @RabbitListener(queuesToDeclare = @Queue("activity_sku_stock_zero"))
+    @RabbitListener(queuesToDeclare = @Queue("${spring.rabbitmq.topic.activity_sku_stock_zero}"))
     public void listener(String message){
         try {
             log.info("监听活动sku库存消耗为0消息 topic: {} message: {}", topic, message);

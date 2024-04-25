@@ -28,4 +28,19 @@ public class RaffleAwardListResponseDTO {
      */
     private Integer sort;
     
+    /**
+     * 解锁次数
+     */
+    private Integer awardRuleLockCount;
+    
+    /**
+     * 奖品是否解锁
+     */
+    private Boolean isAwardUnlock;
+    
+    /**
+     * 等待解锁次数
+     */
+    private Integer waitUnlockCount;
+    
 }

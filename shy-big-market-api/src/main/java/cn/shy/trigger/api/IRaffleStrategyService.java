@@ -23,17 +23,17 @@ public interface IRaffleStrategyService {
     
     /**
      * 查询奖品列表
-     * @param requestDTO
+     * @param request
      * @return
      */
-    Response<List<RaffleAwardListResponseDTO>> queryRaffleAwardList(RaffleAwardListRequestDTO requestDTO);
+    Response<List<RaffleAwardListResponseDTO>> queryRaffleAwardList(RaffleAwardListRequestDTO request);
     
     
     /**
      * 随机抽奖接口
-     * @param requestDTO
+     * @param request
      * @return
      */
-    Response<RaffleResponseDTO> randomRaffle(RaffleRequestDTO requestDTO);
+    Response<RaffleResponseDTO> randomRaffle(RaffleRequestDTO request);
     
 }

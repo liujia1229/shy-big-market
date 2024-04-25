@@ -56,6 +56,11 @@ public abstract class AbstractRaffleActivity extends RaffleActivitySupport imple
         return createOrderAggregate.getActivityOrderEntity().getOrderId();
     }
     
+    @Override
+    public Integer queryRaffleActivityAccountDayPartakeCount(Long activityId, String userId) {
+        return activityRepository.queryRaffleActivityAccountDayPartakeCount(activityId,userId);
+    }
+    
     protected abstract void doSaveOrder(CreateOrderAggregate createOrderAggregate);
     
     protected abstract CreateOrderAggregate buildOrderAggregate(SkuRechargeEntity skuRechargeEntity, ActivitySkuEntity activitySkuEntity, ActivityEntity activityEntity, ActivityCountEntity activityCountEntity);

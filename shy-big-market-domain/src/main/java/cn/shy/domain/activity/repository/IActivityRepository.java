@@ -124,9 +124,15 @@ public interface IActivityRepository {
     void updateActivitySkuStock(Long sku);
     
     /**
-     *
      * @param activityId
      * @return
      */
     List<ActivitySkuEntity> queryActivitySkuListByActivityId(Long activityId);
+    
+    /**
+     * @param activityId
+     * @param userId
+     * @return
+     */
+    Integer queryRaffleActivityAccountDayPartakeCount(Long activityId, String userId);
 }
