@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import sun.plugin2.message.EventMessage;
 
 import javax.annotation.Resource;
 
