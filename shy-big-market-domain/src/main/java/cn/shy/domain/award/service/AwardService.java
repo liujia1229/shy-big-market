@@ -44,7 +44,6 @@ public class AwardService implements IAwardService{
         taskEntity.setTopic(sendAwardMessageEvent.topic());
         taskEntity.setUserId(userAwardRecordEntity.getUserId());
         taskEntity.setMessageId(sendAwardMessageEventMessage.getId());
-        taskEntity.setMessage(sendAwardMessageEventMessage);
         taskEntity.setState(TaskStateVO.create);
         
         //构建聚合对象

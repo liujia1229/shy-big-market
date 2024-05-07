@@ -1,0 +1,26 @@
+24-04-29.10:20:57.268 [main            ] INFO  RaffleActivityPartakeServiceTest - Starting RaffleActivityPartakeServiceTest using Java 1.8.0_202 on shy with PID 14240 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
+24-04-29.10:20:57.276 [main            ] INFO  RaffleActivityPartakeServiceTest - The following 1 profile is active: "dev"
+24-04-29.10:20:58.590 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-04-29.10:20:58.595 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-04-29.10:20:58.655 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
+24-04-29.10:21:01.381 [main            ] INFO  Version                - Redisson 3.23.4
+24-04-29.10:21:02.196 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-04-29.10:21:02.217 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-04-29.10:21:05.404 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-04-29.10:21:05.502 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+24-04-29.10:21:05.562 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#18d30e7:0/SimpleConnection@5e055ce1 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 62536]
+24-04-29.10:21:05.648 [main            ] INFO  RaffleActivityPartakeServiceTest - Started RaffleActivityPartakeServiceTest in 8.878 seconds (JVM running for 10.412)
+24-04-29.10:21:05.959 [main            ] INFO  RaffleStrategyController - 查询抽奖奖品列表配开始 userId:xiaofuge activityId：100301
+24-04-29.10:21:05.996 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-04-29.10:21:06.268 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-04-29.10:21:06.393 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-04-29.10:21:06.420 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-04-29.10:21:06.663 [main            ] INFO  RaffleStrategyController - 查询抽奖奖品列表配置完成 userId:xiaofuge activityId：100301 response: {"code":"0000","data":[{"awardId":101,"awardTitle":"随机积分","isAwardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"7等奖","isAwardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"6等奖","isAwardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"5等奖","isAwardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"4等奖","isAwardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardSubtitle":"抽奖1次后解锁","awardTitle":"3等奖","isAwardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardSubtitle":"抽奖1次后解锁","awardTitle":"2等奖","isAwardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardSubtitle":"抽奖2次后解锁","awardTitle":"1等奖","isAwardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"调用成功"}
+24-04-29.10:21:06.665 [main            ] INFO  RaffleActivityPartakeServiceTest - 请求参数：{"activityId":100301,"userId":"xiaofuge"}
+24-04-29.10:21:06.665 [main            ] INFO  RaffleActivityPartakeServiceTest - 测试结果：{"code":"0000","data":[{"awardId":101,"awardTitle":"随机积分","isAwardUnlock":true,"sort":1,"waitUnlockCount":0},{"awardId":102,"awardTitle":"7等奖","isAwardUnlock":true,"sort":2,"waitUnlockCount":0},{"awardId":103,"awardTitle":"6等奖","isAwardUnlock":true,"sort":3,"waitUnlockCount":0},{"awardId":104,"awardTitle":"5等奖","isAwardUnlock":true,"sort":4,"waitUnlockCount":0},{"awardId":105,"awardTitle":"4等奖","isAwardUnlock":true,"sort":5,"waitUnlockCount":0},{"awardId":106,"awardSubtitle":"抽奖1次后解锁","awardTitle":"3等奖","isAwardUnlock":true,"sort":6,"waitUnlockCount":0},{"awardId":107,"awardSubtitle":"抽奖1次后解锁","awardTitle":"2等奖","isAwardUnlock":true,"sort":7,"waitUnlockCount":0},{"awardId":108,"awardSubtitle":"抽奖2次后解锁","awardTitle":"1等奖","isAwardUnlock":true,"sort":8,"waitUnlockCount":0}],"info":"调用成功"}
+24-04-29.10:21:06.683 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-04-29.10:21:06.685 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-04-29.10:21:07.639 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-04-29.10:21:07.652 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-04-29.10:21:07.658 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-04-29.10:21:07.658 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
