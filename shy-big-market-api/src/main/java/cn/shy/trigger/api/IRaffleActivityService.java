@@ -2,6 +2,8 @@ package cn.shy.trigger.api;
 
 import cn.shy.trigger.api.dto.ActivityDrawRequestDTO;
 import cn.shy.trigger.api.dto.ActivityDrawResponseDTO;
+import cn.shy.trigger.api.dto.UserActivityAccountRequestDTO;
+import cn.shy.trigger.api.dto.UserActivityAccountResponseDTO;
 import cn.shy.types.model.Response;
 
 /**
@@ -23,4 +25,24 @@ public interface IRaffleActivityService {
      * @return
      */
     Response<ActivityDrawResponseDTO> draw(ActivityDrawRequestDTO requestDTO);
+    
+    /**
+     * 签到接口
+     * @return
+     */
+    Response<Boolean> calendarSignRebate(String userId);
+    
+    /**
+     * 检查用户是否签到
+     * @param userId
+     * @return
+     */
+    Response<Boolean> isCalendarSignRebate(String userId);
+    
+    /**
+     * 查询用户活动账户
+     * @param requestDTO
+     * @return
+     */
+    Response<UserActivityAccountResponseDTO> queryUserActivityAccount(UserActivityAccountRequestDTO requestDTO);
 }

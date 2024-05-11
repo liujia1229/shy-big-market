@@ -1,5 +1,6 @@
 package cn.shy.domain.activity.service;
 
+import cn.shy.domain.activity.model.entity.ActivityAccountEntity;
 import cn.shy.domain.activity.model.entity.SkuRechargeEntity;
 
 /**
@@ -27,4 +28,12 @@ public interface IRaffleActivityAccountQuotaService {
      * @return
      */
     Integer queryRaffleActivityAccountDayPartakeCount(Long activityId, String userId);
+    
+    /**
+     * 查询用户活动账户额度
+     * @param userId
+     * @param activityId
+     * @return
+     */
+    ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId);
 }

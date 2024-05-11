@@ -1,795 +1,140 @@
-24-05-02.14:28:27.106 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 12576 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:28:27.107 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:28:28.226 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:28:28.230 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:28:28.297 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 0 Redis repository interfaces.
-24-05-02.14:28:30.994 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:28:31.796 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:28:31.819 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:28:33.103 [main            ] WARN  GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sendRebateMessageEvent': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.rabbit.topic.send_rebate' in value "${spring.rabbit.topic.send_rebate}"
-24-05-02.14:28:33.145 [main            ] INFO  ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-24-05-02.14:28:33.170 [main            ] ERROR SpringApplication      - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sendRebateMessageEvent': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.rabbit.topic.send_rebate' in value "${spring.rabbit.topic.send_rebate}"
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:136)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:141)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:90)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
-	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
-	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
-	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.rabbit.topic.send_rebate' in value "${spring.rabbit.topic.send_rebate}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
-	... 43 common frames omitted
-24-05-02.14:28:33.171 [main            ] ERROR TestContextManager     - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@45b4c3a9] to prepare test instance [cn.shy.test.domain.rabate.BehaviorRebateServiceTest@473847fb]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
-	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
-	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
-	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sendRebateMessageEvent': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.rabbit.topic.send_rebate' in value "${spring.rabbit.topic.send_rebate}"
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:136)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:141)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:90)
-	... 27 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.rabbit.topic.send_rebate' in value "${spring.rabbit.topic.send_rebate}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
-	... 43 common frames omitted
-24-05-02.14:30:04.715 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 21864 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:30:04.716 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:30:05.720 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:30:05.724 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:30:05.778 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
-24-05-02.14:30:08.144 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:30:08.885 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:30:08.904 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:30:10.204 [main            ] WARN  GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-24-05-02.14:30:10.245 [main            ] INFO  ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-24-05-02.14:30:10.270 [main            ] ERROR LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-A component required a bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' in your configuration.
-
-24-05-02.14:30:10.272 [main            ] ERROR TestContextManager     - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@45b4c3a9] to prepare test instance [cn.shy.test.domain.rabate.BehaviorRebateServiceTest@e3ed455]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
-	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
-	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
-	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:136)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:141)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:90)
-	... 27 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:479)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:550)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
-	... 43 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IDailyBehaviorRebateDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1801)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1357)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
-	... 57 common frames omitted
-24-05-02.14:33:54.984 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 25116 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:33:54.986 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:33:55.950 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:33:55.954 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:33:56.008 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 0 Redis repository interfaces.
-24-05-02.14:33:58.354 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:33:59.135 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:33:59.153 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:34:00.399 [main            ] WARN  GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-24-05-02.14:34:00.441 [main            ] INFO  ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-24-05-02.14:34:00.461 [main            ] ERROR LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-A component required a bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' in your configuration.
-
-24-05-02.14:34:00.464 [main            ] ERROR TestContextManager     - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@45b4c3a9] to prepare test instance [cn.shy.test.domain.rabate.BehaviorRebateServiceTest@2ab8589a]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
-	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
-	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
-	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
-	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
-	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:136)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:141)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:90)
-	... 27 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'behaviorRebateRepository': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:479)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:550)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
-	... 43 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.shy.infrastructure.persistent.dao.IUserBehaviorRebateOrderDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1801)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1357)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
-	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
-	... 57 common frames omitted
-24-05-02.14:34:50.149 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 8468 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:34:50.150 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:34:51.076 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:34:51.079 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:34:51.128 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 Redis repository interfaces.
-24-05-02.14:34:53.398 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:34:54.196 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:34:54.216 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:34:57.361 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:34:57.449 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:34:57.511 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@39f68aec [delegate=amqp://shy@127.0.0.1:5672/, localPort= 56328]
-24-05-02.14:34:57.592 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 7.869 seconds (JVM running for 8.779)
-24-05-02.14:34:57.913 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:34:58.192 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:34:58.425 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:34:58.430 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:34:58.448 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:34:58.449 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:34:58.570 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:34:58.584 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:34:58.586 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:34:58.587 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:38:21.385 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 18312 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:38:21.386 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:38:22.350 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:38:22.353 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:38:22.402 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 Redis repository interfaces.
-24-05-02.14:38:24.677 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:38:25.401 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:38:25.428 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:38:28.456 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:38:28.533 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:38:28.582 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@b81938d [delegate=amqp://shy@127.0.0.1:5672/, localPort= 56664]
-24-05-02.14:38:28.658 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 7.753 seconds (JVM running for 8.929)
-24-05-02.14:38:28.933 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:38:29.159 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:38:29.340 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:38:29.344 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:38:29.366 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:38:29.368 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:38:29.648 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:38:29.648 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:38:29.652 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:38:29.652 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:39:41.574 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 27348 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:39:41.576 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:39:42.684 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:39:42.687 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:39:42.751 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 0 Redis repository interfaces.
-24-05-02.14:39:45.154 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 5672 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:39:45.156 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:39:45.770 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:39:46.294 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:39:46.297 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:39:46.356 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 0 Redis repository interfaces.
-24-05-02.14:39:46.599 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:39:46.619 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:39:50.126 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:39:50.188 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:39:50.245 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:39:50.309 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#749baa0c:0/SimpleConnection@ab4d2ba [delegate=amqp://shy@127.0.0.1:5672/, localPort= 56819]
-24-05-02.14:39:50.397 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 9.262 seconds (JVM running for 10.254)
-24-05-02.14:39:50.676 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:39:50.951 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:39:51.190 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:39:51.196 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:39:51.212 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:39:51.213 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:39:51.371 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:39:51.384 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:39:51.387 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:39:51.388 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:39:51.459 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:39:51.483 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:40:04.278 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 8872 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:40:04.279 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:40:05.400 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:40:05.404 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:40:05.460 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
-24-05-02.14:40:08.798 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:40:10.008 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:40:10.046 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:40:14.578 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:40:14.738 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:40:14.830 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#67f266bd:0/SimpleConnection@50fe5df2 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57019]
-24-05-02.14:40:14.965 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 11.32 seconds (JVM running for 12.808)
-24-05-02.14:40:15.085 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:40:15.086 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:40:15.573 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:40:15.573 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:40:15.605 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:40:15.636 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:40:15.984 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:40:15.990 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:40:16.022 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:40:16.024 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:40:16.955 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:40:16.955 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:40:16.965 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:40:16.968 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:40:25.437 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 23732 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:40:25.438 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:40:26.500 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:40:26.503 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:40:26.562 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 Redis repository interfaces.
-24-05-02.14:40:29.807 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:40:30.892 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:40:30.912 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:40:35.509 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:40:35.667 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:40:35.764 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#31450fc0:0/SimpleConnection@5d3a238 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57170]
-24-05-02.14:40:35.900 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 11.023 seconds (JVM running for 12.437)
-24-05-02.14:40:36.446 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:40:36.870 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:40:37.190 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:40:37.199 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:40:37.236 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:40:37.237 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:40:37.900 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:40:37.901 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:40:37.906 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:40:37.907 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:41:00.714 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 29324 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:41:00.715 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:41:01.751 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:41:01.755 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:41:01.809 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
-24-05-02.14:41:04.936 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:41:06.033 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:41:06.059 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:41:10.432 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:41:10.587 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:41:10.692 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#42734b71:0/SimpleConnection@488c6c98 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57287]
-24-05-02.14:41:10.832 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 10.639 seconds (JVM running for 11.998)
-24-05-02.14:41:14.062 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:41:15.018 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:41:15.019 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:41:15.587 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:41:15.587 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:41:15.604 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:43:00.214 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=2m14s609ms793µs700ns).
-24-05-02.14:43:00.219 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=2m14s632ms677µs).
-24-05-02.14:43:00.221 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=2m14s634ms499µs).
-24-05-02.14:43:00.227 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
-24-05-02.14:43:00.370 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:43:00.372 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:43:00.638 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:43:00.650 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:43:01.232 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:43:01.232 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:43:01.238 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:43:01.238 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:43:05.572 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 25592 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:43:05.573 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:43:06.649 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:43:06.652 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:43:06.704 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
-24-05-02.14:43:09.910 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:43:10.954 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:43:10.974 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:43:15.904 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:43:16.076 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:43:16.182 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#38347345:0/SimpleConnection@6f70015 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57571]
-24-05-02.14:43:16.393 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 11.343 seconds (JVM running for 12.594)
-24-05-02.14:43:30.727 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:43:31.394 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:44:44.110 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m42s715ms727µs300ns).
-24-05-02.14:44:44.131 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:44:44.132 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:44:44.176 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
-24-05-02.14:44:44.206 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:44:44.206 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:44:44.244 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:44:44.246 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:44:44.523 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:44:44.530 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：[]
-24-05-02.14:44:45.115 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:44:45.116 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:44:45.123 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:44:45.124 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:44:52.811 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 27800 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:44:52.812 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:44:53.875 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:44:53.879 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:44:53.935 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
-24-05-02.14:44:56.399 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:44:57.207 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:44:57.235 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:45:00.516 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:45:00.621 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:45:00.682 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#5a654e05:0/SimpleConnection@6fe33512 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57800]
-24-05-02.14:45:00.766 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.48 seconds (JVM running for 9.582)
-24-05-02.14:45:01.069 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:45:01.340 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:45:01.436 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:45:01.462 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:45:01.748 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:45:01.756 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：["046608801411","956672051135"]
-24-05-02.14:45:01.777 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:45:01.779 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:45:02.766 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:45:02.767 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:45:02.772 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:45:02.773 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:45:41.463 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 23964 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:45:41.464 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:45:42.502 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:45:42.505 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:45:42.557 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
-24-05-02.14:45:45.030 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:45:45.797 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:45:45.822 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:45:49.162 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:45:49.260 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:45:49.322 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7b7b1448:0/SimpleConnection@73476e2d [delegate=amqp://shy@127.0.0.1:5672/, localPort= 57935]
-24-05-02.14:45:49.411 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.503 seconds (JVM running for 9.955)
-24-05-02.14:45:49.697 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:45:50.009 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:45:50.017 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:45:50.018 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:45:50.070 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:45:50.070 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:45:50.339 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:45:50.345 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：["460199865499","475460633806"]
-24-05-02.14:45:50.364 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:45:50.365 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:45:50.386 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:45:50.398 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:45:50.401 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:45:50.402 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:47:04.685 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 16060 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:47:04.686 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:47:05.753 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:47:05.758 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:47:05.810 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 0 Redis repository interfaces.
-24-05-02.14:47:08.269 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:47:09.034 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:47:09.062 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:47:12.365 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:47:12.455 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:47:12.519 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1322b542:0/SimpleConnection@e353e1d [delegate=amqp://shy@127.0.0.1:5672/, localPort= 58114]
-24-05-02.14:47:12.612 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.484 seconds (JVM running for 9.982)
-24-05-02.14:47:12.911 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:47:13.186 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:47:13.226 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:47:13.248 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:47:13.438 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:47:13.444 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：["859369788251","394287416872"]
-24-05-02.14:47:13.463 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:47:13.465 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:47:13.593 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:47:13.606 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:47:13.609 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:47:13.609 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:47:35.468 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 13132 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:47:35.469 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:47:36.508 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:47:36.511 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:47:36.564 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 Redis repository interfaces.
-24-05-02.14:47:38.979 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:47:39.766 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:47:39.788 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:47:43.010 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:47:43.110 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:47:43.172 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7204d98f:0/SimpleConnection@2662e3ff [delegate=amqp://shy@127.0.0.1:5672/, localPort= 58249]
-24-05-02.14:47:43.259 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.281 seconds (JVM running for 9.594)
-24-05-02.14:47:43.541 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:47:43.791 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:49:33.607 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=2m19s814ms398µs200ns).
-24-05-02.14:49:33.636 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:49:33.636 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:49:33.672 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
-24-05-02.14:49:33.688 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:49:33.691 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:49:34.044 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"xiaofuge"}
-24-05-02.14:49:34.051 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：["000080975682","665737232177"]
-24-05-02.14:49:34.075 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:49:34.077 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:49:34.623 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:49:34.623 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:49:34.628 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:49:34.629 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:51:02.514 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 32500 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:51:02.515 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:51:03.497 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:51:03.499 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:51:03.551 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
-24-05-02.14:51:05.783 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:51:06.512 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:51:06.532 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:51:09.476 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:51:09.550 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:51:09.603 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@39f68aec [delegate=amqp://shy@127.0.0.1:5672/, localPort= 58598]
-24-05-02.14:51:09.684 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 7.658 seconds (JVM running for 8.582)
-24-05-02.14:51:09.941 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:51:10.015 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:51:10.015 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:51:10.206 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:51:10.207 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:51:10.207 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:51:10.403 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:51:10.404 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:51:10.675 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:51:10.675 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:51:10.679 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:51:10.680 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:52:01.846 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 14188 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:52:01.848 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:52:02.802 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:52:02.806 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:52:02.857 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 0 Redis repository interfaces.
-24-05-02.14:52:05.148 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:52:05.893 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:52:05.914 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:52:08.865 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:52:08.942 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:52:08.988 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@39f68aec [delegate=amqp://shy@127.0.0.1:5672/, localPort= 58777]
-24-05-02.14:52:09.059 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 7.637 seconds (JVM running for 8.512)
-24-05-02.14:52:09.326 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:52:09.559 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:52:09.594 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:52:09.617 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:52:09.900 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:52:09.902 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:52:10.013 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:52:10.034 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:52:10.042 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:52:10.056 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:52:10.058 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:52:10.059 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:56:20.083 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 28256 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:56:20.085 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:56:21.080 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:56:21.083 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:56:21.128 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 Redis repository interfaces.
-24-05-02.14:56:23.627 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:56:24.510 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:56:24.534 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:56:27.702 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:56:27.779 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:56:27.835 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@b81938d [delegate=amqp://shy@127.0.0.1:5672/, localPort= 59233]
-24-05-02.14:56:27.914 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.244 seconds (JVM running for 9.102)
-24-05-02.14:56:28.231 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:56:28.494 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:56:28.533 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:56:28.557 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:56:28.927 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:56:28.928 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:56:29.895 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:56:29.919 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:56:29.924 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:56:29.924 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:58:18.964 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 336 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.14:58:18.965 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.14:58:19.909 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.14:58:19.913 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.14:58:19.963 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 Redis repository interfaces.
-24-05-02.14:58:22.286 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.14:58:23.000 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:58:23.020 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.14:58:25.946 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.14:58:26.029 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.14:58:26.085 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#1b3bec6c:0/SimpleConnection@39f68aec [delegate=amqp://shy@127.0.0.1:5672/, localPort= 59475]
-24-05-02.14:58:26.157 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 7.638 seconds (JVM running for 8.663)
-24-05-02.14:58:26.409 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:58:26.656 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:58:26.702 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.14:58:26.727 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.14:58:27.041 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:58:27.042 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.14:58:27.149 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:58:27.149 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.14:58:27.152 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.14:58:27.153 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:02:46.574 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 25056 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.15:02:46.576 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.15:02:47.792 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.15:02:47.796 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.15:02:47.851 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 0 Redis repository interfaces.
-24-05-02.15:02:50.455 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.15:02:51.255 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:02:51.278 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:02:54.677 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.15:02:54.767 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.15:02:54.820 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#6c46dc02:0/SimpleConnection@550e7ef6 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 60124]
-24-05-02.15:02:54.896 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.847 seconds (JVM running for 10.54)
-24-05-02.15:02:55.068 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:02:55.068 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:02:55.178 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:02:55.344 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:02:55.344 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:02:55.345 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:04:51.633 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
-24-05-02.15:04:51.631 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m53s400ms338µs700ns).
-24-05-02.15:04:51.634 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m53s403ms614µs900ns).
-24-05-02.15:04:51.634 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m53s403ms621µs200ns).
-24-05-02.15:04:51.860 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:04:51.864 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:04:52.639 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:04:52.651 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:04:52.657 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:04:52.657 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:05:00.005 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 5000 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.15:05:00.007 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.15:05:01.074 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.15:05:01.078 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.15:05:01.126 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 0 Redis repository interfaces.
-24-05-02.15:05:03.663 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.15:05:04.409 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:05:04.431 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:05:07.778 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.15:05:07.889 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.15:05:07.956 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#66a99584:0/SimpleConnection@419ece7a [delegate=amqp://shy@127.0.0.1:5672/, localPort= 60427]
-24-05-02.15:05:08.050 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.606 seconds (JVM running for 9.71)
-24-05-02.15:05:08.367 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:05:08.665 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:05:10.562 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:05:10.577 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:05:10.625 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:05:10.627 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:05:13.026 [main            ] INFO  EventPublisher         - 发送MQ消息 topic:send_rebate message:{"data":{"bizId":"shy_sku_20240429","rebateConfig":"9011","rebateType":"sign","userId":"shy"},"id":"61618051980","timestamp":1714633510554}
-24-05-02.15:05:13.067 [main            ] INFO  EventPublisher         - 发送MQ消息 topic:send_rebate message:{"data":{"bizId":"shy_integral_20240429","rebateConfig":"10","rebateType":"sign","userId":"shy"},"id":"43663627740","timestamp":1714633510557}
-24-05-02.15:05:13.091 [main            ] INFO  BehaviorRebateServiceTest - 请求参数：{"behaviorTypeVO":"SIGN","outBusinessNo":"20240429","userId":"shy"}
-24-05-02.15:05:13.100 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：["920896418904","101379173421"]
-24-05-02.15:05:13.122 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:05:13.125 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:05:13.944 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:05:13.944 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:05:13.948 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:05:13.949 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:05:26.332 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 23488 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
-24-05-02.15:05:26.334 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
-24-05-02.15:05:27.343 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
-24-05-02.15:05:27.346 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-24-05-02.15:05:27.399 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 0 Redis repository interfaces.
-24-05-02.15:05:29.842 [main            ] INFO  Version                - Redisson 3.23.4
-24-05-02.15:05:30.565 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:05:30.586 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
-24-05-02.15:05:33.595 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
-24-05-02.15:05:33.680 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
-24-05-02.15:05:33.739 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#749baa0c:0/SimpleConnection@ab4d2ba [delegate=amqp://shy@127.0.0.1:5672/, localPort= 60583]
-24-05-02.15:05:33.824 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.01 seconds (JVM running for 9.243)
-24-05-02.15:05:34.101 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:05:34.355 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:05:34.392 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
-24-05-02.15:05:34.416 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
-24-05-02.15:05:34.516 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:05:34.519 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
-24-05-02.15:05:34.800 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:05:34.813 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
-24-05-02.15:05:34.816 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
-24-05-02.15:05:34.816 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:45:01.152 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1h39m36s44ms812µs700ns).
+24-05-12.00:45:01.151 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1h40m6s700ms698µs).
+24-05-12.00:45:01.151 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1h40m6s700ms374µs600ns).
+24-05-12.00:45:01.150 [main            ] ERROR RaffleActivityController - 日历签到返利失败 userId:xiaofuge
+24-05-12.00:45:01.168 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
+24-05-12.00:45:01.351 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:45:01.351 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:45:01.352 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:45:01.352 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:45:01.352 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:45:01.354 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:45:01.363 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:45:01.365 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:45:01.365 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:46:32.041 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 5772 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
+24-05-12.00:46:32.042 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
+24-05-12.00:46:33.086 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-05-12.00:46:33.089 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-05-12.00:46:33.141 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
+24-05-12.00:46:35.708 [main            ] INFO  Version                - Redisson 3.23.4
+24-05-12.00:46:36.485 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:46:36.507 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:46:39.702 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-05-12.00:46:39.796 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+24-05-12.00:46:39.853 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#8b670c0:0/SimpleConnection@278cb145 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 50910]
+24-05-12.00:46:39.986 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.407 seconds (JVM running for 9.316)
+24-05-12.00:46:40.032 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
+24-05-12.00:46:40.040 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:46:40.040 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:46:40.270 [main            ] INFO  RaffleActivityController - 日历签到返利开始 userId:xiaofuge
+24-05-12.00:46:40.278 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:46:40.365 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:46:40.365 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:46:40.366 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:46:40.493 [main            ] ERROR RaffleActivityController - 日历签到返利失败 userId:xiaofuge
+24-05-12.00:46:40.785 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：{"code":"0001","data":false,"info":"调用失败"}
+24-05-12.00:46:40.812 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:46:40.815 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:46:40.818 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:46:40.961 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:46:40.961 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:46:40.974 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:46:40.978 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:46:40.979 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:46:40.979 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:47:27.536 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 17864 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
+24-05-12.00:47:27.537 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
+24-05-12.00:47:28.605 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-05-12.00:47:28.608 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-05-12.00:47:28.654 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 0 Redis repository interfaces.
+24-05-12.00:47:31.072 [main            ] INFO  Version                - Redisson 3.23.4
+24-05-12.00:47:31.922 [redisson-netty-2-5] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:47:31.943 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:47:35.674 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-05-12.00:47:35.787 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+24-05-12.00:47:35.861 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#39109603:0/SimpleConnection@35b38986 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 51128]
+24-05-12.00:47:36.010 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 9.023 seconds (JVM running for 10.467)
+24-05-12.00:47:36.316 [main            ] INFO  RaffleActivityController - 日历签到返利开始 userId:xiaofuge
+24-05-12.00:47:36.354 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:47:36.716 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:47:49.996 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:47:50.024 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:49:00.821 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m54s105ms73µs100ns).
+24-05-12.00:49:00.835 [Retail_HikariCP housekeeper] WARN  HikariPool             - Retail_HikariCP - Thread starvation or clock leap detected (housekeeper delta=1m40s811ms319µs600ns).
+24-05-12.00:49:00.919 [scheduling-1    ] INFO  UpdateAwardStockJob    - 定时任务，更新奖品消耗库存【延迟队列获取，降低对数据库的更新频次，不要产生竞争】
+24-05-12.00:49:00.922 [main            ] ERROR RaffleActivityController - 日历签到返利失败 userId:xiaofuge
+24-05-12.00:49:00.951 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:49:00.975 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:00.980 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:00.983 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:01.009 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:49:01.306 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：{"code":"0001","data":false,"info":"调用失败"}
+24-05-12.00:49:01.829 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:01.842 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:01.842 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:01.847 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:49:01.847 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:49:01.847 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:49:09.245 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 3272 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
+24-05-12.00:49:09.246 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
+24-05-12.00:49:10.260 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-05-12.00:49:10.264 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-05-12.00:49:10.322 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 Redis repository interfaces.
+24-05-12.00:49:12.765 [main            ] INFO  Version                - Redisson 3.23.4
+24-05-12.00:49:13.544 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:49:13.565 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:49:16.879 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-05-12.00:49:16.983 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+24-05-12.00:49:17.082 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#8b670c0:0/SimpleConnection@351c6341 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 51357]
+24-05-12.00:49:17.187 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.468 seconds (JVM running for 9.426)
+24-05-12.00:49:17.452 [main            ] INFO  RaffleActivityController - 日历签到返利开始 userId:xiaofuge
+24-05-12.00:49:17.479 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:49:17.775 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:49:17.823 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:49:17.852 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:49:18.293 [main            ] INFO  EventPublisher         - 发送MQ消息 topic:send_rebate message:{"data":{"bizId":"xiaofuge_sku_20240512","rebateConfig":"9011","rebateType":"sign","userId":"xiaofuge"},"id":"81619064503","timestamp":1715446157817}
+24-05-12.00:49:18.329 [main            ] INFO  EventPublisher         - 发送MQ消息 topic:send_rebate message:{"data":{"bizId":"xiaofuge_integral_20240512","rebateConfig":"10","rebateType":"sign","userId":"xiaofuge"},"id":"11883355534","timestamp":1715446157820}
+24-05-12.00:49:18.358 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  RebateMessageCustomer  - 监听用户行为返利消息 - 非sku奖励暂时不处理 topic: send_rebate message: {"data":{"bizId":"xiaofuge_sku_20240512","rebateConfig":"9011","rebateType":"sign","userId":"xiaofuge"},"id":"81619064503","timestamp":1715446157817}
+24-05-12.00:49:18.359 [main            ] INFO  RaffleActivityController - 日历签到返利完成 userId:xiaofuge orderIds: ["386169798236","998111931395"]
+24-05-12.00:49:18.363 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：{"code":"0000","data":true,"info":"调用成功"}
+24-05-12.00:49:18.370 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  RebateMessageCustomer  - 监听用户行为返利消息 - 非sku奖励暂时不处理 topic: send_rebate message: {"data":{"bizId":"xiaofuge_integral_20240512","rebateConfig":"10","rebateType":"sign","userId":"xiaofuge"},"id":"11883355534","timestamp":1715446157820}
+24-05-12.00:49:18.379 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:18.380 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:18.381 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:49:19.170 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:19.182 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:19.384 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:49:19.388 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:49:19.389 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:49:19.389 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:52:26.351 [main            ] INFO  BehaviorRebateServiceTest - Starting BehaviorRebateServiceTest using Java 1.8.0_202 on shy with PID 11340 (started by 30642 in D:\code\shy-big-market\shy-big-market-app)
+24-05-12.00:52:26.361 [main            ] INFO  BehaviorRebateServiceTest - The following 1 profile is active: "dev"
+24-05-12.00:52:27.402 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-05-12.00:52:27.405 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-05-12.00:52:27.468 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 0 Redis repository interfaces.
+24-05-12.00:52:29.882 [main            ] INFO  Version                - Redisson 3.23.4
+24-05-12.00:52:30.809 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:52:30.827 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:6379
+24-05-12.00:52:34.379 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-05-12.00:52:34.495 [main            ] INFO  CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+24-05-12.00:52:34.567 [main            ] INFO  CachingConnectionFactory - Created new connection: rabbitConnectionFactory#22fb9a2c:0/SimpleConnection@2aa0feb2 [delegate=amqp://shy@127.0.0.1:5672/, localPort= 51898]
+24-05-12.00:52:34.687 [main            ] INFO  BehaviorRebateServiceTest - Started BehaviorRebateServiceTest in 8.877 seconds (JVM running for 10.178)
+24-05-12.00:52:34.971 [main            ] INFO  RaffleActivityController - 日历签到返利开始 userId:xiaofuge
+24-05-12.00:52:35.003 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:52:35.013 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:52:35.014 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Starting...
+24-05-12.00:52:35.388 [pool-3-thread-2 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:52:35.388 [pool-3-thread-1 ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:52:35.389 [main            ] INFO  HikariDataSource       - Retail_HikariCP - Start completed.
+24-05-12.00:52:35.515 [main            ] ERROR RaffleActivityController - 日历签到返利失败 userId:xiaofuge
+24-05-12.00:52:35.826 [main            ] INFO  BehaviorRebateServiceTest - 测试结果：{"code":"0001","data":false,"info":"调用失败"}
+24-05-12.00:52:35.857 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:52:35.860 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:52:35.866 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Waiting for workers to finish.
+24-05-12.00:52:36.653 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:52:36.665 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:52:36.730 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#2-2] INFO  SimpleMessageListenerContainer - Successfully waited for workers to finish.
+24-05-12.00:52:36.734 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:52:36.735 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+24-05-12.00:52:36.735 [SpringApplicationShutdownHook] INFO  SimpleMessageListenerContainer - Shutdown ignored - container is already stopped

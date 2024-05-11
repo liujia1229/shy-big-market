@@ -4,6 +4,8 @@ package cn.shy.test.domain.rabate;
 import cn.shy.domain.rebate.model.entity.BehaviorEntity;
 import cn.shy.domain.rebate.model.valobj.BehaviorTypeVO;
 import cn.shy.domain.rebate.service.IBehaviorRebateService;
+import cn.shy.trigger.api.IRaffleActivityService;
+import cn.shy.types.model.Response;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -25,6 +27,9 @@ public class BehaviorRebateServiceTest {
 
     @Resource
     private IBehaviorRebateService behaviorRebateService;
+    
+    @Resource
+    private IRaffleActivityService raffleActivityService;
 
     @Test
     public void test_createOrder() {
@@ -37,6 +42,12 @@ public class BehaviorRebateServiceTest {
         List<String> orderIds = behaviorRebateService.createOrder(behaviorEntity);
         log.info("请求参数：{}", JSON.toJSONString(behaviorEntity));
         log.info("测试结果：{}", JSON.toJSONString(orderIds));
+    }
+    
+    @Test
+    public void test_calendarSignRebate(){
+        Response<Boolean> response = raffleActivityService.calendarSignRebate("xiaofuge");
+        log.info("测试结果：{}", JSON.toJSONString(response));
     }
 
 }

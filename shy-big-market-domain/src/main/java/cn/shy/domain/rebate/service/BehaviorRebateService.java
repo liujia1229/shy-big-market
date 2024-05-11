@@ -10,6 +10,7 @@ import cn.shy.domain.rebate.model.valobj.TaskStateVO;
 import cn.shy.domain.rebate.repository.IBehaviorRebateRepository;
 import cn.shy.types.common.Constants;
 import cn.shy.types.event.BaseEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * @author shy
  * @since 2024/5/1 21:29
  */
+@Slf4j
 @Service
 public class BehaviorRebateService implements IBehaviorRebateService {
     
@@ -52,6 +54,7 @@ public class BehaviorRebateService implements IBehaviorRebateService {
                     .rebateDesc(dailyBehaviorRebateVO.getRebateDesc())
                     .rebateType(dailyBehaviorRebateVO.getRebateType())
                     .rebateConfig(dailyBehaviorRebateVO.getRebateConfig())
+                    .outBusinessNo(behaviorEntity.getOutBusinessNo())
                     .bizId(bizId)
                     .build();
             orderIds.add(behaviorRebateOrderEntity.getOrderId());
@@ -85,5 +88,10 @@ public class BehaviorRebateService implements IBehaviorRebateService {
         behaviorRebateRepository.saveUserRebateRecord(behaviorEntity.getUserId(), behaviorRebateAggregates);
         //返回订单ids
         return orderIds;
+    }
+    
+    @Override
+    public List<BehaviorRebateOrderEntity> queryOrderByOutBusinessNo(String userId, String outBusinessNo) {
+        return behaviorRebateRepository.queryOrderByOutBusinessNo(userId,outBusinessNo);
     }
 }

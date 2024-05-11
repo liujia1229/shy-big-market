@@ -18,9 +18,9 @@ import java.util.Date;
  * @since 2024/4/1 20:42
  */
 @Service
-public class RaffleActivityService extends AbstractRaffleActivity implements IRaffleActivitySkuStockService {
+public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAccountQuota implements IRaffleActivitySkuStockService {
     
-    public RaffleActivityService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
+    public RaffleActivityAccountQuotaService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
     }
     
@@ -79,5 +79,10 @@ public class RaffleActivityService extends AbstractRaffleActivity implements IRa
     public void updateActivitySkuStock(Long sku) {
         activityRepository.updateActivitySkuStock(sku);
         
+    }
+    
+    @Override
+    public ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId) {
+        return null;
     }
 }

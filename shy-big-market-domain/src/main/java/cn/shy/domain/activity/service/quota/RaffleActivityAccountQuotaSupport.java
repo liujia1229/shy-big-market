@@ -10,13 +10,13 @@ import cn.shy.domain.activity.service.quota.rule.factory.DefaultActivityChainFac
  * @author shy
  * @since 2024/4/1 21:32
  */
-public class RaffleActivitySupport {
+public class RaffleActivityAccountQuotaSupport {
     
     protected IActivityRepository activityRepository;
 
     protected DefaultActivityChainFactory defaultActivityChainFactory;
     
-    public RaffleActivitySupport(IActivityRepository activityRepository,DefaultActivityChainFactory defaultActivityChainFactory){
+    public RaffleActivityAccountQuotaSupport(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory){
         this.activityRepository = activityRepository;
         this.defaultActivityChainFactory = defaultActivityChainFactory;
     }

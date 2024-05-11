@@ -1,6 +1,7 @@
 package cn.shy.domain.rebate.service;
 
 import cn.shy.domain.rebate.model.entity.BehaviorEntity;
+import cn.shy.domain.rebate.model.entity.BehaviorRebateOrderEntity;
 
 import java.util.List;
 
@@ -12,5 +13,6 @@ import java.util.List;
 public interface IBehaviorRebateService {
     
     List<String> createOrder(BehaviorEntity behaviorEntity);
-
+    
+    List<BehaviorRebateOrderEntity> queryOrderByOutBusinessNo(String userId, String outBusinessNo);
 }
