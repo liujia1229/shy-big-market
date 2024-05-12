@@ -2,6 +2,7 @@ package cn.shy.domain.strategy.service.raffle;
 
 import cn.shy.domain.strategy.model.entity.StrategyAwardEntity;
 import cn.shy.domain.strategy.model.valobj.RuleTreeVO;
+import cn.shy.domain.strategy.model.valobj.RuleWeightVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardRuleModelVO;
 import cn.shy.domain.strategy.model.valobj.StrategyAwardStockKeyVO;
 import cn.shy.domain.strategy.service.AbstractRaffleStrategy;
@@ -77,5 +78,16 @@ public class DefaultRaffleStrategy extends AbstractRaffleStrategy implements IRa
     @Override
     public Map<String, Integer> queryAwardRuleLockCount(String[] treeIds) {
         return strategyRepository.queryAwardRuleLockCount(treeIds);
+    }
+    
+    @Override
+    public List<RuleWeightVO> queryAwardRuleWeightByActivityId(Long activityId) {
+        Long strategyId = strategyRepository.queryStrategyIdByActivityId(activityId);
+        return queryAwardRuleWeight(strategyId);
+    }
+    
+    @Override
+    public List<RuleWeightVO> queryAwardRuleWeight(Long strategyId) {
+        return strategyRepository.queryAwardRuleWeight(strategyId);
     }
 }

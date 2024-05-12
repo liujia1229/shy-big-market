@@ -1,9 +1,6 @@
 package cn.shy.trigger.api;
 
-import cn.shy.trigger.api.dto.RaffleAwardListRequestDTO;
-import cn.shy.trigger.api.dto.RaffleAwardListResponseDTO;
-import cn.shy.trigger.api.dto.RaffleRequestDTO;
-import cn.shy.trigger.api.dto.RaffleResponseDTO;
+import cn.shy.trigger.api.dto.*;
 import cn.shy.types.model.Response;
 
 import java.util.List;
@@ -36,4 +33,12 @@ public interface IRaffleStrategyService {
      */
     Response<RaffleResponseDTO> randomRaffle(RaffleRequestDTO request);
     
+    
+    /**
+     * 查询策略权重接口
+     *
+     * @param requestDTO
+     * @return
+     */
+    Response<List<RaffleStrategyRuleWeightResponseDTO>> queryRaffleStrategyRuleWeight(RaffleStrategyRuleWeightRequestDTO requestDTO);
 }

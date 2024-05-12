@@ -10,6 +10,7 @@ import cn.shy.domain.activity.service.quota.rule.factory.DefaultActivityChainFac
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 @Service
 public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAccountQuota implements IRaffleActivitySkuStockService {
+    
     
     public RaffleActivityAccountQuotaService(IActivityRepository activityRepository, DefaultActivityChainFactory defaultActivityChainFactory) {
         super(activityRepository, defaultActivityChainFactory);
@@ -83,6 +85,7 @@ public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAcc
     
     @Override
     public ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId) {
-        return null;
+        return activityRepository.queryActivityAccountEntity(userId,activityId);
+        
     }
 }

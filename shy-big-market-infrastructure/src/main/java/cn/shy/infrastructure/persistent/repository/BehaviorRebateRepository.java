@@ -135,7 +135,7 @@ public class BehaviorRebateRepository implements IBehaviorRebateRepository {
         //请求对象
         UserBehaviorRebateOrder userBehaviorRebateOrderReq = new UserBehaviorRebateOrder();
         userBehaviorRebateOrderReq.setUserId(userId);
-        userBehaviorRebateOrderReq.setBizId(outBusinessNo);
+        userBehaviorRebateOrderReq.setOutBusinessNo(outBusinessNo);
         //查询结果
         List<UserBehaviorRebateOrder> userBehaviorRebateOrders = userBehaviorRebateOrderDao.queryOrderByOutBusinessNo(userBehaviorRebateOrderReq);
         List<BehaviorRebateOrderEntity> behaviorRebateOrderEntities = new ArrayList<>(userBehaviorRebateOrders.size());

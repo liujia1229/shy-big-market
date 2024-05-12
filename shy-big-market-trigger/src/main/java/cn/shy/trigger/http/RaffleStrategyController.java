@@ -4,15 +4,13 @@ import cn.shy.domain.activity.service.IRaffleActivityAccountQuotaService;
 import cn.shy.domain.strategy.model.entity.RaffleAwardEntity;
 import cn.shy.domain.strategy.model.entity.RaffleFactorEntity;
 import cn.shy.domain.strategy.model.entity.StrategyAwardEntity;
+import cn.shy.domain.strategy.model.valobj.RuleWeightVO;
 import cn.shy.domain.strategy.service.IRaffleAward;
 import cn.shy.domain.strategy.service.IRaffleRule;
 import cn.shy.domain.strategy.service.IRaffleStrategy;
 import cn.shy.domain.strategy.service.armory.IStrategyArmory;
 import cn.shy.trigger.api.IRaffleStrategyService;
-import cn.shy.trigger.api.dto.RaffleAwardListRequestDTO;
-import cn.shy.trigger.api.dto.RaffleAwardListResponseDTO;
-import cn.shy.trigger.api.dto.RaffleRequestDTO;
-import cn.shy.trigger.api.dto.RaffleResponseDTO;
+import cn.shy.trigger.api.dto.*;
 import cn.shy.types.enums.ResponseCode;
 import cn.shy.types.exception.AppException;
 import cn.shy.types.model.Response;
@@ -54,7 +52,6 @@ public class RaffleStrategyController implements IRaffleStrategyService {
     private IRaffleActivityAccountQuotaService raffleActivityAccountQuotaService;
     
     
-    
     @GetMapping("strategy_armory")
     @Override
     public Response<Boolean> strategyArmory(Long strategyId) {
@@ -85,7 +82,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
         try {
             log.info("查询抽奖奖品列表配开始 userId:{} activityId：{}", request.getUserId(), request.getActivityId());
             //1.参数校验
-            if (StringUtils.isEmpty(request.getUserId()) || request.getActivityId() == null){
+            if (StringUtils.isEmpty(request.getUserId()) || request.getActivityId() == null) {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
             //2.查询奖品配置
@@ -99,7 +96,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
             // 4. 查询规则配置 - 获取奖品的解锁限制，抽奖N次后解锁
             Map<String, Integer> ruleLockCountMap = raffleRule.queryAwardRuleLockCount(treeIds);
             // 5. 查询抽奖次数 - 用户已经参与的抽奖次数
-            Integer dayPartakeCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountDayPartakeCount(request.getActivityId(),request.getUserId());
+            Integer dayPartakeCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountDayPartakeCount(request.getActivityId(), request.getUserId());
             
             List<RaffleAwardListResponseDTO> raffleAwardListResponseDTOS = new ArrayList<>(strategyAwardEntities.size());
             for (StrategyAwardEntity strategyAward : strategyAwardEntities) {
@@ -155,6 +152,54 @@ public class RaffleStrategyController implements IRaffleStrategyService {
         } catch (Exception e) {
             log.error("随机抽奖失败 strategyId：{}", requestDTO.getStrategyId(), e);
             return Response.<RaffleResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+    
+    @PostMapping("query_raffle_strategy_rule_weight")
+    @Override
+    public Response<List<RaffleStrategyRuleWeightResponseDTO>> queryRaffleStrategyRuleWeight(RaffleStrategyRuleWeightRequestDTO requestDTO) {
+        try {
+            log.info("查询抽奖策略权重规则配置开始 userId:{} activityId：{}", requestDTO.getUserId(), requestDTO.getActivityId());
+            //1.参数校验
+            if (StringUtils.isBlank(requestDTO.getUserId()) || null == requestDTO.getActivityId()) {
+                throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
+            }
+            //2.用户额度
+            Integer userActivityAccountTotalUseCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountDayPartakeCount(requestDTO.getActivityId(), requestDTO.getUserId());
+            
+            //3.策略查询
+            List<RuleWeightVO> ruleWeightVOList = raffleRule.queryAwardRuleWeightByActivityId(requestDTO.getActivityId());
+            List<RaffleStrategyRuleWeightResponseDTO> strategyRuleWeightList = new ArrayList<>();
+            
+            for (RuleWeightVO ruleWeightVO : ruleWeightVOList) {
+                List<RuleWeightVO.Award> awardList = ruleWeightVO.getAwardList();
+                List<RaffleStrategyRuleWeightResponseDTO.StrategyAward> strategyAwardList = new ArrayList<>(awardList.size());
+                for (RuleWeightVO.Award award : awardList) {
+                    strategyAwardList.add(RaffleStrategyRuleWeightResponseDTO.StrategyAward.builder()
+                            .awardTitle(award.getAwardTitle())
+                            .awardId(award.getAwardId())
+                            .build());
+                }
+                RaffleStrategyRuleWeightResponseDTO raffleStrategyRuleWeightResponseDTO = new RaffleStrategyRuleWeightResponseDTO();
+                raffleStrategyRuleWeightResponseDTO.setStrategyAwards(strategyAwardList);
+                raffleStrategyRuleWeightResponseDTO.setUserActivityAccountTotalUseCount(userActivityAccountTotalUseCount);
+                raffleStrategyRuleWeightResponseDTO.setRuleWeightCount(ruleWeightVO.getWeight());
+                
+                strategyRuleWeightList.add(raffleStrategyRuleWeightResponseDTO);
+            }
+            Response<List<RaffleStrategyRuleWeightResponseDTO>> response = Response.<List<RaffleStrategyRuleWeightResponseDTO>>builder()
+                    .data(strategyRuleWeightList)
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .build();
+            log.info("查询抽奖策略权重规则配置完成 userId:{} activityId：{} response: {}", requestDTO.getUserId(), requestDTO.getActivityId(), JSON.toJSONString(response));
+            return response;
+        } catch (Exception e) {
+            log.error("查询抽奖策略权重规则配置失败 userId:{} activityId：{}", requestDTO.getUserId(), requestDTO.getActivityId(), e);
+            return Response.<List<RaffleStrategyRuleWeightResponseDTO>>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();

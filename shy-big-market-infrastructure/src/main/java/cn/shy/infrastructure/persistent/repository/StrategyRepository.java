@@ -5,6 +5,7 @@ import cn.shy.domain.strategy.model.entity.StrategyEntity;
 import cn.shy.domain.strategy.model.entity.StrategyRuleEntity;
 import cn.shy.domain.strategy.model.valobj.*;
 import cn.shy.domain.strategy.repository.IStrategyRepository;
+import cn.shy.domain.strategy.service.rule.chain.factory.DefaultChainFactory;
 import cn.shy.infrastructure.persistent.dao.*;
 import cn.shy.infrastructure.persistent.po.*;
 import cn.shy.infrastructure.persistent.redis.IRedisService;
@@ -54,6 +55,9 @@ public class StrategyRepository implements IStrategyRepository {
     
     @Resource
     private IRaffleActivityAccountDayDao raffleActivityAccountDayDao;
+    
+    @Resource
+    private IRaffleActivityAccountDao raffleActivityAccountDao;
     
     @Override
     public List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId) {
@@ -235,11 +239,11 @@ public class StrategyRepository implements IStrategyRepository {
         // 2. 加锁为了兜底，如果后续有恢复库存，手动处理等，也不会超卖。因为所有的可用库存key，都被加锁了。
         String lockKey = cacheKey + Constants.UNDERLINE + surplus;
         Boolean lock = null;
-        if (endDateTime == null){
+        if (endDateTime == null) {
             lock = redisService.setNx(lockKey);
-        } else{
+        } else {
             long expireTime = endDateTime.getTime() - System.currentTimeMillis();
-            lock = redisService.setNx(lockKey,expireTime,TimeUnit.MICROSECONDS);
+            lock = redisService.setNx(lockKey, expireTime, TimeUnit.MICROSECONDS);
         }
         if (lock) {
             return true;
@@ -311,11 +315,11 @@ public class StrategyRepository implements IStrategyRepository {
         //封装参数
         RaffleActivityAccountDay raffleActivityAccountDayReq = new RaffleActivityAccountDay();
         raffleActivityAccountDayReq.setActivityId(activityId);
-        raffleActivityAccountDayReq.setDay(raffleActivityAccountDayReq.currentDay());
+        raffleActivityAccountDayReq.setDay(RaffleActivityAccountDay.currentDay());
         raffleActivityAccountDayReq.setUserId(userId);
         
         RaffleActivityAccountDay raffleActivityAccountDay = raffleActivityAccountDayDao.queryActivityAccountDayByUserId(raffleActivityAccountDayReq);
-        if (raffleActivityAccountDay == null){
+        if (raffleActivityAccountDay == null) {
             return 0;
         }
         return raffleActivityAccountDay.getDayCount() - raffleActivityAccountDay.getDayCountSurplus();
@@ -323,14 +327,75 @@ public class StrategyRepository implements IStrategyRepository {
     
     @Override
     public Map<String, Integer> queryAwardRuleLockCount(String[] treeIds) {
-        if (treeIds == null || treeIds.length == 0){
+        if (treeIds == null || treeIds.length == 0) {
             return new HashMap<>(0);
         }
         List<RuleTreeNode> ruleTreeNodes = ruleTreeNodeDao.queryRuleLocks(treeIds);
-        Map<String,Integer> resultMap = new HashMap<>(ruleTreeNodes.size());
+        Map<String, Integer> resultMap = new HashMap<>(ruleTreeNodes.size());
         for (RuleTreeNode ruleTreeNode : ruleTreeNodes) {
-            resultMap.put(ruleTreeNode.getTreeId(),Integer.valueOf(ruleTreeNode.getRuleValue()));
+            resultMap.put(ruleTreeNode.getTreeId(), Integer.valueOf(ruleTreeNode.getRuleValue()));
         }
         return resultMap;
+    }
+    
+    
+    @Override
+    public List<RuleWeightVO> queryAwardRuleWeight(Long strategyId) {
+        String redisKey = Constants.RedisKey.STRATEGY_RULE_WEIGHT_KEY + strategyId;
+        List<RuleWeightVO> ruleWeightVOList = redisService.getValue(redisKey);
+        if (ruleWeightVOList != null && !ruleWeightVOList.isEmpty()) {
+            return ruleWeightVOList;
+        }
+        
+        ruleWeightVOList = new ArrayList<>();
+        
+        //1.查询ruleValue
+        StrategyRule strategyRuleReq = new StrategyRule();
+        strategyRuleReq.setStrategyId(strategyId);
+        strategyRuleReq.setRuleModel(DefaultChainFactory.LogicModel.RULE_WEIGHT.getCode());
+        String ruleValue = strategyRuleDao.queryStrategyRuleValue(strategyRuleReq);
+        //2.借助实体对象解析ruleValue
+        StrategyRuleEntity strategyRuleEntity = new StrategyRuleEntity();
+        strategyRuleEntity.setRuleModel(DefaultChainFactory.LogicModel.RULE_WEIGHT.getCode());
+        strategyRuleEntity.setRuleValue(ruleValue);
+        Map<String, List<Integer>> ruleWeightValues = strategyRuleEntity.getRuleWeightValues();
+        Set<String> ruleWeightKeys = ruleWeightValues.keySet();
+        //3.遍历组装奖品配置
+        for (String ruleWeightKey : ruleWeightKeys) {
+            List<Integer> awardIds = ruleWeightValues.get(ruleWeightKey);
+            List<RuleWeightVO.Award> awardList = new ArrayList<>();
+            for (Integer awardId : awardIds) {
+                StrategyAward strategyAwardReq = new StrategyAward();
+                strategyAwardReq.setAwardId(awardId);
+                strategyAwardReq.setStrategyId(strategyId);
+                StrategyAward strategyAward = strategyAwardDao.queryStrategyAward(strategyAwardReq);
+                awardList.add(RuleWeightVO.Award.builder()
+                        .awardId(strategyAward.getAwardId())
+                        .awardTitle(strategyAward.getAwardTitle())
+                        .build());
+            }
+            
+            RuleWeightVO ruleWeightVO = new RuleWeightVO();
+            ruleWeightVO.setAwardIds(awardIds);
+            ruleWeightVO.setAwardList(awardList);
+            ruleWeightVO.setWeight(Integer.valueOf(ruleValue.split(Constants.COLON)[0]));
+            ruleWeightVO.setRuleValue(ruleValue);
+            
+            ruleWeightVOList.add(ruleWeightVO);
+        }
+        // 设置缓存 - 实际场景中，这类数据，可以在活动下架的时候统一清空缓存。
+        
+        redisService.setValue(redisKey, ruleWeightVOList);
+        return ruleWeightVOList;
+    }
+    
+    @Override
+    public Integer queryActivityAccountTotalUseCount(String userId, Long strategyId) {
+        Long activityId = raffleActivityDao.queryActivityIdByStrategyId(strategyId);
+        RaffleActivityAccount raffleActivityAccountReq = new RaffleActivityAccount();
+        raffleActivityAccountReq.setUserId(userId);
+        raffleActivityAccountReq.setActivityId(activityId);
+        RaffleActivityAccount raffleActivityAccount = raffleActivityAccountDao.queryActivityAccountByUserId(raffleActivityAccountReq);
+        return raffleActivityAccount.getTotalCount() - raffleActivityAccount.getTotalCountSurplus();
     }
 }

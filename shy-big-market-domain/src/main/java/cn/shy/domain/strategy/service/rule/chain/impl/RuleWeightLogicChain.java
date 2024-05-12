@@ -28,11 +28,7 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
     @Resource
     private IStrategyRepository strategyRepository;
     
-    /**
-     * 用户积分，当前写死，通过反射修改
-     */
-    public Long userScore = 0L;
-    
+
     @Resource
     private IStrategyDispatch strategyDispatch;
     
@@ -47,9 +43,10 @@ public class RuleWeightLogicChain extends AbstractLogicChain {
         List<Long> analyticalSortedKeys  = new ArrayList<>(analyticalValueGroup.keySet());
         Collections.sort(analyticalSortedKeys);
         
+        Integer userScore = strategyRepository.queryActivityAccountTotalUseCount(userId,strategyId);
         Long nextValue = analyticalSortedKeys.stream()
                 .sorted(Comparator.reverseOrder())
-                .filter(key -> userScore >= key)
+                .filter(analyticalSortedKeyValue -> userScore >= analyticalSortedKeyValue)
                 .findFirst()
                 .orElse(null);
         

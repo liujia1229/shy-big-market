@@ -5,6 +5,8 @@ import cn.shy.domain.rebate.model.entity.BehaviorEntity;
 import cn.shy.domain.rebate.model.valobj.BehaviorTypeVO;
 import cn.shy.domain.rebate.service.IBehaviorRebateService;
 import cn.shy.trigger.api.IRaffleActivityService;
+import cn.shy.trigger.api.dto.UserActivityAccountRequestDTO;
+import cn.shy.trigger.api.dto.UserActivityAccountResponseDTO;
 import cn.shy.types.model.Response;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -50,4 +52,23 @@ public class BehaviorRebateServiceTest {
         log.info("测试结果：{}", JSON.toJSONString(response));
     }
 
+    
+    @Test
+    public void test_isCalendarSignRebate(){
+        Response<Boolean> response = raffleActivityService.isCalendarSignRebate("xiaofuge");
+        log.info("测试结果：{}", JSON.toJSONString(response));
+    }
+    
+    @Test
+    public void test_queryUserActivityAccount() {
+        UserActivityAccountRequestDTO request = new UserActivityAccountRequestDTO();
+        request.setActivityId(100301L);
+        request.setUserId("xiaofuge");
+        // 查询数据
+        Response<UserActivityAccountResponseDTO> response = raffleActivityService.queryUserActivityAccount(request);
+        log.info("请求参数：{}", JSON.toJSONString(request));
+        log.info("测试结果：{}", JSON.toJSONString(response));
+    }
+    
+    
 }
