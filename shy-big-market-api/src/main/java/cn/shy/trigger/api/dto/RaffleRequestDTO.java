@@ -14,4 +14,9 @@ public class RaffleRequestDTO {
      * 策略id
      */
     private Long strategyId;
+    
+    /**
+     * 用户id
+     */
+    private String userId;
 }

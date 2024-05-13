@@ -15,6 +15,7 @@ import java.util.Date;
 
 /**
  * 抽奖活动服务
+ *
  * @author shy
  * @since 2024/4/1 20:42
  */
@@ -85,7 +86,11 @@ public class RaffleActivityAccountQuotaService extends AbstractRaffleActivityAcc
     
     @Override
     public ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId) {
-        return activityRepository.queryActivityAccountEntity(userId,activityId);
-        
+        return activityRepository.queryActivityAccountEntity(userId, activityId);
+    }
+    
+    @Override
+    public Integer queryRaffleActivityAccountPartakeCount(Long activityId, String userId) {
+        return activityRepository.queryRaffleActivityAccountPartakeCount(activityId, userId);
     }
 }

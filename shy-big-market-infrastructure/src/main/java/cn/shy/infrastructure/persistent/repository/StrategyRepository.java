@@ -378,7 +378,7 @@ public class StrategyRepository implements IStrategyRepository {
             RuleWeightVO ruleWeightVO = new RuleWeightVO();
             ruleWeightVO.setAwardIds(awardIds);
             ruleWeightVO.setAwardList(awardList);
-            ruleWeightVO.setWeight(Integer.valueOf(ruleValue.split(Constants.COLON)[0]));
+            ruleWeightVO.setWeight(Integer.valueOf(ruleWeightKey.split(Constants.COLON)[0]));
             ruleWeightVO.setRuleValue(ruleValue);
             
             ruleWeightVOList.add(ruleWeightVO);

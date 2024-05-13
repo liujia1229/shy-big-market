@@ -135,7 +135,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
             log.info("随机抽奖开始 strategyId: {}", requestDTO.getStrategyId());
             //调用抽奖
             RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(RaffleFactorEntity.builder()
-                    .userId("system")
+                    .userId(requestDTO.getUserId())
                     .strategyId(requestDTO.getStrategyId())
                     .build());
             //封装结果返回
@@ -160,7 +160,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
     
     @PostMapping("query_raffle_strategy_rule_weight")
     @Override
-    public Response<List<RaffleStrategyRuleWeightResponseDTO>> queryRaffleStrategyRuleWeight(RaffleStrategyRuleWeightRequestDTO requestDTO) {
+    public Response<List<RaffleStrategyRuleWeightResponseDTO>> queryRaffleStrategyRuleWeight(@RequestBody RaffleStrategyRuleWeightRequestDTO requestDTO) {
         try {
             log.info("查询抽奖策略权重规则配置开始 userId:{} activityId：{}", requestDTO.getUserId(), requestDTO.getActivityId());
             //1.参数校验
@@ -168,7 +168,7 @@ public class RaffleStrategyController implements IRaffleStrategyService {
                 throw new AppException(ResponseCode.ILLEGAL_PARAMETER.getCode(), ResponseCode.ILLEGAL_PARAMETER.getInfo());
             }
             //2.用户额度
-            Integer userActivityAccountTotalUseCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountDayPartakeCount(requestDTO.getActivityId(), requestDTO.getUserId());
+            Integer userActivityAccountTotalUseCount = raffleActivityAccountQuotaService.queryRaffleActivityAccountPartakeCount(requestDTO.getActivityId(), requestDTO.getUserId());
             
             //3.策略查询
             List<RuleWeightVO> ruleWeightVOList = raffleRule.queryAwardRuleWeightByActivityId(requestDTO.getActivityId());

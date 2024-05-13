@@ -138,4 +138,5 @@ public interface IActivityRepository {
     
     ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId);
     
+    Integer queryRaffleActivityAccountPartakeCount(Long activityId, String userId);
 }

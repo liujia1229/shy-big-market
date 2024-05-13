@@ -36,4 +36,12 @@ public interface IRaffleActivityAccountQuotaService {
      * @return
      */
     ActivityAccountEntity queryActivityAccountEntity(String userId, Long activityId);
+    
+    /**
+     * 查询用户账户参与数
+     * @param activityId
+     * @param userId
+     * @return
+     */
+    Integer queryRaffleActivityAccountPartakeCount(Long activityId, String userId);
 }
