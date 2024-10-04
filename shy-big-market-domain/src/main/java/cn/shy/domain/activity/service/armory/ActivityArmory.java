@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 活动sku预热
+ * 活动sku预热，后续库存扣减从缓存中扣除
  *
  * @author shy
  * @since 2024/4/3 14:30

@@ -169,6 +169,11 @@ public class RaffleActivityController implements IRaffleActivityService {
         }
     }
     
+    /**
+     * 用户签到接口
+     * @param userId
+     * @return
+     */
     @PostMapping("calendar_sign_rebate")
     @Override
     public Response<Boolean> calendarSignRebate(String userId) {
@@ -201,6 +206,11 @@ public class RaffleActivityController implements IRaffleActivityService {
         }
     }
     
+    /**
+     * 查询用户订单:是否签到
+     * @param userId
+     * @return
+     */
     @Override
     @PostMapping("is_calendar_sign_rebate")
     public Response<Boolean> isCalendarSignRebate(@RequestParam String userId) {

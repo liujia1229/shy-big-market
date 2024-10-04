@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * sku库存更新
+ * sku库存更新，库存扣减之后写入延时队列，定时任务遍历队列 更新数据库库存
  * @author shy
  * @since 2024/4/7 22:08
  */

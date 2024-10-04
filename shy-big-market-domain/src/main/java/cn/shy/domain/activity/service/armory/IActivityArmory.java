@@ -14,5 +14,10 @@ public interface IActivityArmory {
      */
     boolean assembleActivitySku(Long sku);
     
+    /**
+     * 根据活动id 缓存 活动信息、对应的sku信息、sku库存信息
+     * @param activityId
+     * @return
+     */
     boolean assembleActivitySkuByActivityId(Long activityId);
 }

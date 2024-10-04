@@ -21,6 +21,9 @@ public class Constants {
         public static String STRATEGY_KEY = "big_market_strategy_key_";
         public static final String STRATEGY_RULE_WEIGHT_KEY = "strategy_rule_weight_key_";
         
+        public static String USER_CREDIT_ACCOUNT_LOCK = "user_credit_account_lock_";
+        
+        
     }
     
 }
