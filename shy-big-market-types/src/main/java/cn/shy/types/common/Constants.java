@@ -23,6 +23,10 @@ public class Constants {
         
         public static String USER_CREDIT_ACCOUNT_LOCK = "user_credit_account_lock_";
         
+        // 用户积分账户->加锁
+        public static final String ACTIVITY_ACCOUNT_LOCK = "activity_account_lock_";
+        
+        
         
     }
     

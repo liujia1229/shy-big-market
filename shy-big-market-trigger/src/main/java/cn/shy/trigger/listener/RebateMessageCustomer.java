@@ -65,7 +65,7 @@ public class RebateMessageCustomer {
                     tradeEntity.setTradeType(TradeTypeVO.FORWARD);
                     tradeEntity.setAmount(new BigDecimal(rebateMessage.getRebateConfig()));
                     tradeEntity.setOutBusinessNo(rebateMessage.getBizId());
-                    String orderId = creditService.createOder(tradeEntity);
+                    creditService.createOder(tradeEntity);
                     break;
             }
 
